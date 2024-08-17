@@ -2,7 +2,7 @@
 {
   home = {
     packages = with pkgs; [
-      hello home-manager neovim
+      neovim tmux
     ];
     username = "chris";
     homeDirectory = "/Users/chris";
