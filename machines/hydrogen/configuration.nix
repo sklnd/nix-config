@@ -4,7 +4,9 @@
   imports =
     [
       ./hardware-configuration.nix
+      (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")
     ];
+
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -69,6 +71,7 @@
     enable = true;
     openFirewall = true;
   };
+  services.vscode-server.enable = true;
 
   system.stateVersion = "24.11";
 }
