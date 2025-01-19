@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 {
-    home = {
-      username = "chris";
-      homeDirectory = "/home/chris";
-    };
+  home = {
+    username = "chris";
+    homeDirectory = "/home/chris";
+  };
 }

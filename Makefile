@@ -7,10 +7,14 @@ home:
 .PHONY: nix
 nix:
 	if [ "$(shell uname)" = "Linux" ]; then \
-		sudo nixos-rebuild switch --flake .#; \
+		nixos-rebuild switch --use-remote-sudo --flake .#; \
 	elif [ "$(shell uname)" = "Darwin" ]; then \
 		darwin-rebuild switch --flake .#; \
 	else \
 		echo "Unsupported OS"; \
 		exit 1; \
 	fi
+
+.PHONY: format
+format:
+	treefmt

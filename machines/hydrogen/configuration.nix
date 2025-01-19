@@ -1,17 +1,18 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      (fetchTarball {
-        url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
-        sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
-        })
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    (fetchTarball {
+      url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
+      sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
+    })
+  ];
 
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   programs.zsh.enable = true;
 
   # Bootloader.
@@ -44,7 +45,10 @@
   users.users.chris = {
     isNormalUser = true;
     description = "Chris Skalenda";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
   };
 

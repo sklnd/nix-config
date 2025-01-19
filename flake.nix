@@ -13,45 +13,63 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin }: let
-    # Define host-specific variables
-    hostConfigurations = {
-      quail = {
-        system = "aarch64-darwin";
-        configuration = ./machines/quail/configuration.nix;
-        home = ./machines/quail/home.nix;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nix-darwin,
+    }:
+    let
+      # Define host-specific variables
+      hostConfigurations = {
+        quail = {
+          system = "aarch64-darwin";
+          configuration = ./machines/quail/configuration.nix;
+          home = ./machines/quail/home.nix;
+        };
+
+        hydrogen = {
+          system = "x86_64-linux";
+          configuration = ./machines/hydrogen/configuration.nix;
+          home = ./machines/hydrogen/home.nix;
+        };
       };
 
-      hydrogen = {
-        system = "x86_64-linux";
-        configuration = ./machines/hydrogen/configuration.nix;
-        home = ./machines/hydrogen/home.nix;
+      # Helper to build nixos or darwin configurations
+      buildSystemConfig =
+        host:
+        nixpkgs.lib.nixosSystem {
+          system = host.system;
+          modules = [
+            host.configuration
+            ./modules/system-common.nix
+          ];
+        };
+
+      buildHomeConfig =
+        host:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${host.system};
+          modules = [
+            host.home
+            ./modules/home-common.nix
+          ];
+        };
+
+    in
+    {
+      nixosConfigurations = {
+        hydrogen = buildSystemConfig hostConfigurations.hydrogen;
+      };
+
+      darwinConfigurations = {
+        quail = buildSystemConfig hostConfigurations.quail;
+      };
+
+      homeConfigurations = {
+        hydrogen = buildHomeConfig hostConfigurations.hydrogen;
+        quail = buildHomeConfig hostConfigurations.quail;
       };
     };
-
-    # Helper to build nixos or darwin configurations
-    buildSystemConfig = host: nixpkgs.lib.nixosSystem {
-      system = host.system;
-      modules = [ host.configuration ./modules/system-common.nix ];
-    };
-
-    buildHomeConfig = host: home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${host.system};
-      modules = [ host.home ./modules/home-common.nix ];
-    };
-
-  in {
-    nixosConfigurations = {
-      hydrogen = buildSystemConfig hostConfigurations.hydrogen;
-    };
-
-    darwinConfigurations = {
-      quail = buildSystemConfig hostConfigurations.quail;
-    };
-
-    homeConfigurations = {
-      hydrogen = buildHomeConfig hostConfigurations.hydrogen;
-      quail = buildHomeConfig hostConfigurations.quail;
-    };
-  };
 }

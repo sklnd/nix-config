@@ -15,26 +15,33 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
-  let
-    system = "aarch64-darwin";
-    pkgs = import nixpkgs { inherit system; };
-  in
-  {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .
-    darwinConfigurations."quail" = nix-darwin.lib.darwinSystem {
-      modules = [ ./configuration.nix ];
-    };
+  outputs =
+    inputs@{
+      self,
+      nix-darwin,
+      nixpkgs,
+      home-manager,
+      ...
+    }:
+    let
+      system = "aarch64-darwin";
+      pkgs = import nixpkgs { inherit system; };
+    in
+    {
+      # Build darwin flake using:
+      # $ darwin-rebuild build --flake .
+      darwinConfigurations."quail" = nix-darwin.lib.darwinSystem {
+        modules = [ ./configuration.nix ];
+      };
 
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."quail".pkgs;
+      # Expose the package set, including overlays, for convenience.
+      darwinPackages = self.darwinConfigurations."quail".pkgs;
 
-    homeConfigurations = {
-      personal = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home.nix ];
+      homeConfigurations = {
+        personal = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home.nix ];
+        };
       };
     };
-  };
 }
