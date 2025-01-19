@@ -3,6 +3,7 @@
   home = {
     packages = with pkgs; [
       tmux
+      tig
       zsh-powerlevel10k
     ];
     file.".p10k.zsh".text = builtins.readFile ./p10k.zsh;
