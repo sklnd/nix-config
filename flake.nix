@@ -62,12 +62,13 @@
         };
 
       buildHomeConfig =
-        host:
+        { host, gui }:
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${host.system};
           modules = [
             host.home
             ./modules/home-common.nix
+            (if gui then ./modules/home/gui.nix else null)
           ];
         };
 
@@ -85,9 +86,18 @@
       };
 
       homeConfigurations = {
-        "chris@hydrogen" = buildHomeConfig hostConfigurations.hydrogen;
-        "chris@quail" = buildHomeConfig hostConfigurations.quail;
-        "chris.skalenda" = buildHomeConfig hostConfigurations."Chris-Skalendas-MacBook-Pro";
+        "chris@hydrogen" = buildHomeConfig {
+          host = hostConfigurations.hydrogen;
+          gui = false;
+        };
+        "chris@quail" = buildHomeConfig {
+          host = hostConfigurations.quail;
+          gui = true;
+        };
+        "chris.skalenda" = buildHomeConfig {
+          host = hostConfigurations."Chris-Skalendas-MacBook-Pro";
+          gui = false;
+        };
       };
     };
 }
