@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -37,9 +37,18 @@
       };
 
       # Helper to build nixos or darwin configurations
-      buildSystemConfig =
+      buildNixosSystemConfig =
         host:
         nixpkgs.lib.nixosSystem {
+          system = host.system;
+          modules = [
+            host.configuration
+            ./modules/system-common.nix
+          ];
+        };
+      buildDarwinSystemConfig =
+        host:
+        nix-darwin.lib.darwinSystem {
           system = host.system;
           modules = [
             host.configuration
@@ -60,11 +69,11 @@
     in
     {
       nixosConfigurations = {
-        hydrogen = buildSystemConfig hostConfigurations.hydrogen;
+        hydrogen = buildNixosSystemConfig hostConfigurations.hydrogen;
       };
 
       darwinConfigurations = {
-        quail = buildSystemConfig hostConfigurations.quail;
+        quail = buildDarwinSystemConfig hostConfigurations.quail;
       };
 
       homeConfigurations = {
