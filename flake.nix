@@ -77,8 +77,8 @@
       };
 
       homeConfigurations = {
-        hydrogen = buildHomeConfig hostConfigurations.hydrogen;
-        quail = buildHomeConfig hostConfigurations.quail;
+        "chris@hydrogen" = buildHomeConfig hostConfigurations.hydrogen;
+        "chris@quail" = buildHomeConfig hostConfigurations.quail;
       };
     };
 }

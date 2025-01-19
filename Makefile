@@ -2,7 +2,7 @@ default: nix
 
 .PHONY: home
 home:
-	home-manager switch --flake .#hydrogen
+	home-manager switch --flake .
 
 .PHONY: nix
 nix:
