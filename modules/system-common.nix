@@ -7,6 +7,7 @@
     treefmt
     shfmt
     asdf-vm
+    aws-vault
   ];
 
 }
