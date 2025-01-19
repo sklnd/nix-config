@@ -9,7 +9,10 @@
     file.".p10k.zsh".text = builtins.readFile ./p10k.zsh;
     stateVersion = "23.11";
   };
+
   programs = {
+    awscli.enable = true;
+    direnv.enable = true;
     neovim = {
       enable = true;
       defaultEditor = true;
@@ -73,7 +76,7 @@
       enable = true;
       dotDir = ".config/zsh";
       initExtraBeforeCompInit = builtins.readFile ./zshrc;
-      initExtra = ''
+      initExtra = lib.mkDefault ''
         # Powerlevel10k Zsh theme
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       '';

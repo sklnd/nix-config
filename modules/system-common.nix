@@ -6,6 +6,7 @@
     gnumake
     treefmt
     shfmt
+    asdf-vm
   ];
 
 }
