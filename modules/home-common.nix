@@ -13,17 +13,17 @@
   programs = {
     awscli.enable = true;
     direnv.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
-      plugins = with pkgs.vimPlugins; [
-        nvim-lspconfig
-        nvim-treesitter.withAllGrammars
-      ];
-    };
+    # neovim = {
+    #   enable = true;
+    #   defaultEditor = true;
+    #   viAlias = true;
+    #   vimAlias = true;
+    #   vimdiffAlias = true;
+    #   plugins = with pkgs.vimPlugins; [
+    #     nvim-lspconfig
+    #     nvim-treesitter.withAllGrammars
+    #   ];
+    # };
 
     git = {
       enable = true;

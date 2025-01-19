@@ -11,6 +11,10 @@
       url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -19,6 +23,7 @@
       nixpkgs,
       home-manager,
       nix-darwin,
+      nixvim,
     }:
     let
       # Define host-specific variables
@@ -68,6 +73,8 @@
           modules = [
             host.home
             ./modules/home-common.nix
+            nixvim.homeManagerModules.nixvim
+            ./modules/home/nixvim.nix
             (if gui then ./modules/home/gui.nix else null)
           ];
         };
