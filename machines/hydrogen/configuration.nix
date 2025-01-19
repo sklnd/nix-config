@@ -4,11 +4,15 @@
   imports =
     [
       ./hardware-configuration.nix
-      (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master")
+      (fetchTarball {
+        url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
+        sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
+        })
     ];
 
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  programs.zsh.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -41,9 +45,7 @@
     isNormalUser = true;
     description = "Chris Skalenda";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-        git
-    ];
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -51,6 +53,8 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    home-manager
+    gnumake
   ];
 
   services.openssh = {

@@ -1,40 +1,57 @@
 {
-  description = "Example Darwin system flake";
+  description = "Configuration for multiple computers using flakes";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
-  let
-    system = "aarch64-darwin";
-    pkgs = import nixpkgs { inherit system; };
-  in
-  {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .
-    darwinConfigurations."quail" = nix-darwin.lib.darwinSystem {
-      modules = [ ./configuration.nix ];
+  outputs = { self, nixpkgs, home-manager, nix-darwin }: let
+    # Define host-specific variables
+    hostConfigurations = {
+      quail = {
+        system = "aarch64-darwin";
+        configuration = ./machines/quail/configuration.nix;
+        home = ./machines/quail/home.nix;
+      };
+
+      hydrogen = {
+        system = "x86_64-linux";
+        configuration = ./machines/hydrogen/configuration.nix;
+        home = ./machines/hydrogen/home.nix;
+      };
     };
 
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."quail".pkgs;
+    # Helper to build nixos or darwin configurations
+    buildSystemConfig = host: nixpkgs.lib.nixosSystem {
+      system = host.system;
+      modules = [ host.configuration ./modules/system-common.nix ];
+    };
+
+    buildHomeConfig = host: home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.${host.system};
+      modules = [ host.home ./modules/home-common.nix ];
+    };
+
+  in {
+    nixosConfigurations = {
+      hydrogen = buildSystemConfig hostConfigurations.hydrogen;
+    };
+
+    darwinConfigurations = {
+      quail = buildSystemConfig hostConfigurations.quail;
+    };
 
     homeConfigurations = {
-      personal = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home.nix ];
-      };
+      hydrogen = buildHomeConfig hostConfigurations.hydrogen;
+      quail = buildHomeConfig hostConfigurations.quail;
     };
   };
 }

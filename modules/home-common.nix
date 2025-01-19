@@ -4,9 +4,6 @@
     packages = with pkgs; [
       tmux
     ];
-    username = "chris";
-    homeDirectory = "/Users/chris";
-
     stateVersion = "23.11";
   };
   programs = {
@@ -25,7 +22,7 @@
     git = {
       enable = true;
       userName = "Chris Skalenda";
-      userEmail = "chris@skalenda.org";
+      userEmail = lib.mkDefault "chris@skalenda.org";
       aliases = {
         "co" = "checkout";
       };
@@ -70,3 +67,4 @@
     };
   };
 }
+
