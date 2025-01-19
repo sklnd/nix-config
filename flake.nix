@@ -28,6 +28,11 @@
           configuration = ./machines/quail/configuration.nix;
           home = ./machines/quail/home.nix;
         };
+        "Chris-Skalendas-MacBook-Pro" = {
+          system = "aarch64-darwin";
+          configuration = ./machines/honor/configuration.nix;
+          home = ./machines/honor/home.nix;
+        };
 
         hydrogen = {
           system = "x86_64-linux";
@@ -74,11 +79,15 @@
 
       darwinConfigurations = {
         quail = buildDarwinSystemConfig hostConfigurations.quail;
+        "Chris-Skalendas-MacBook-Pro" =
+          buildDarwinSystemConfig
+            hostConfigurations."Chris-Skalendas-MacBook-Pro";
       };
 
       homeConfigurations = {
         "chris@hydrogen" = buildHomeConfig hostConfigurations.hydrogen;
         "chris@quail" = buildHomeConfig hostConfigurations.quail;
+        "chris.skalenda" = buildHomeConfig hostConfigurations."Chris-Skalendas-MacBook-Pro";
       };
     };
 }
