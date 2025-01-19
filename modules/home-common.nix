@@ -4,6 +4,7 @@
     packages = with pkgs; [
       gh
       hub
+      silver-searcher
       tig
       tmux
       zsh-powerlevel10k
