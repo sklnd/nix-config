@@ -75,7 +75,7 @@
             ./modules/home-common.nix
             nixvim.homeManagerModules.nixvim
             ./modules/home/nixvim.nix
-            (if gui then ./modules/home/gui.nix else null)
+            (if gui then ./modules/home/gui.nix else ./modules/home/cli.nix)
           ];
         };
 
