@@ -13,17 +13,6 @@
   programs = {
     awscli.enable = true;
     direnv.enable = true;
-    # neovim = {
-    #   enable = true;
-    #   defaultEditor = true;
-    #   viAlias = true;
-    #   vimAlias = true;
-    #   vimdiffAlias = true;
-    #   plugins = with pkgs.vimPlugins; [
-    #     nvim-lspconfig
-    #     nvim-treesitter.withAllGrammars
-    #   ];
-    # };
 
     git = {
       enable = true;
@@ -76,7 +65,7 @@
       enable = true;
       dotDir = ".config/zsh";
       initExtraBeforeCompInit = builtins.readFile ./zshrc;
-      initExtra = lib.mkDefault ''
+      initExtraFirst = lib.mkDefault ''
         # Powerlevel10k Zsh theme
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       '';
