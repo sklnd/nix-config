@@ -23,7 +23,7 @@
           ruff.enable = true;
         };
       };
-      plugins.coq-nvim= {
+      plugins.coq-nvim = {
         enable = true;
       };
       plugins.web-devicons.enable = true;
@@ -31,9 +31,9 @@
         enable = true;
         filters.dotfiles = false;
         view = {
-            side = "left";
-            width = 30;
-            preserveWindowProportions = true;
+          side = "left";
+          width = 30;
+          preserveWindowProportions = true;
         };
       };
     };
