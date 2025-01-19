@@ -3,7 +3,9 @@
   home = {
     packages = with pkgs; [
       tmux
+      zsh-powerlevel10k
     ];
+    file.".p10k.zsh".text = builtins.readFile ./p10k.zsh;
     stateVersion = "23.11";
   };
   programs = {
@@ -65,6 +67,17 @@
         };
       };
     };
+
+    zsh = {
+      enable = true;
+      dotDir = ".config/zsh";
+      initExtraBeforeCompInit = builtins.readFile ./zshrc;
+      initExtra = ''
+        # Powerlevel10k Zsh theme
+        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      '';
+    };
   };
+
 }
 
