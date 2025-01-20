@@ -23,10 +23,7 @@
 
       plugins = with pkgs.tmuxPlugins; [
         {
-          plugin = power-theme;
-          extraConfig = ''
-            		   set -g @tmux_power_theme 'moon'
-            		'';
+          plugin = catppuccin;
         }
       ];
       extraConfig = ''

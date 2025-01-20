@@ -72,7 +72,7 @@
           pkgs = nixpkgs.legacyPackages.${host.system};
           modules = [
             host.home
-            ./modules/home-common.nix
+            ./modules/home/home.nix
             nixvim.homeManagerModules.nixvim
             ./modules/home/nixvim.nix
             ./modules/home/git.nix
