@@ -6,10 +6,8 @@
       hub
       silver-searcher
       tig
-      tmux
       zsh-powerlevel10k
     ];
-    file.".p10k.zsh".text = builtins.readFile ./p10k.zsh;
     stateVersion = "23.11";
   };
 
@@ -17,78 +15,20 @@
     awscli.enable = true;
     direnv.enable = true;
 
-    git = {
-      enable = true;
-      userName = "Chris Skalenda";
-      userEmail = lib.mkDefault "chris@skalenda.org";
-      aliases = {
-        "co" = "checkout";
-      };
-      extraConfig = {
-        "user" = {
-          signingkey = "/Users/chris/.ssh/2021-ecdsa";
-        };
-        "core" = {
-          editor = "vim";
-          autocrlf = false;
-          excludesfile = "~/.git_global_ignore";
-        };
-        "push" = {
-          default = "current";
-        };
-        "color" = {
-          "status" = {
-            added = "green bold";
-            changed = "red bold strike";
-            untracked = "cyan";
-            branch = "yellow black bold ul";
-          };
-        };
-        "pull" = {
-          ff = "only";
-        };
-        "filter" = {
-          "lfs" = {
-            clean = "git-lfs clean -- %f";
-            smudge = "git-lfs smudge -- %f";
-            process = "git-lfs filter-process";
-            required = true;
-          };
-        };
-        "init" = {
-          defaultBranch = "main";
-        };
-        "gpg" = {
-          format = "ssh";
-        };
-      };
-    };
-
-    zsh = {
-      enable = true;
-      dotDir = ".config/zsh";
-      initExtraBeforeCompInit = builtins.readFile ./zshrc;
-      initExtraFirst = lib.mkDefault ''
-        # Powerlevel10k Zsh theme
-        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      '';
-      oh-my-zsh = {
-        enable = true;
-        plugins = [
-          "git"
-          "scd"
-          "dotenv"
-          "ssh-agent"
-        ];
-      };
-    };
-
     tmux = {
       enable = true;
       terminal = "screen-256color";
       historyLimit = 10000;
       prefix = "C-a";
 
+      plugins = with pkgs.tmuxPlugins; [
+        {
+          plugin = power-theme;
+          extraConfig = ''
+            		   set -g @tmux_power_theme 'moon'
+            		'';
+        }
+      ];
       extraConfig = ''
         # Highlight active window
         #set-window-option -g window-status-current-bg black
