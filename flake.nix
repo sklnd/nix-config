@@ -106,7 +106,7 @@
         };
         "chris.skalenda" = buildHomeConfig {
           host = hostConfigurations."Chris-Skalendas-MacBook-Pro";
-          gui = false;
+          gui = true;
         };
       };
     };
