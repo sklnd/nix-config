@@ -8,6 +8,7 @@
     shfmt
     asdf-vm
     aws-vault
+    rustup
   ];
 
 }
