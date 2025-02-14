@@ -7,6 +7,7 @@
       silver-searcher
       tig
       zsh-powerlevel10k
+      amazon-ecr-credential-helper
     ];
     stateVersion = "23.11";
   };
