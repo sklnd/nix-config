@@ -44,6 +44,12 @@
           configuration = ./machines/hydrogen/configuration.nix;
           home = ./machines/hydrogen/home.nix;
         };
+
+        helium = {
+          system = "aarch64-linux";
+          configuration = ./machines/helium/configuration.nix;
+          home = ./machines/helium/home.nix;
+        };
       };
 
       # Helper to build nixos or darwin configurations
@@ -86,6 +92,7 @@
     {
       nixosConfigurations = {
         hydrogen = buildNixosSystemConfig hostConfigurations.hydrogen;
+        helium = buildNixosSystemConfig hostConfigurations.helium;
       };
 
       darwinConfigurations = {
@@ -98,6 +105,10 @@
       homeConfigurations = {
         "chris@hydrogen" = buildHomeConfig {
           host = hostConfigurations.hydrogen;
+          gui = false;
+        };
+        "chris@helium" = buildHomeConfig {
+          host = hostConfigurations.helium;
           gui = false;
         };
         "chris@quail" = buildHomeConfig {
