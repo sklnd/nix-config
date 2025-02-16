@@ -8,7 +8,6 @@
       sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
     })
   ];
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

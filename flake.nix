@@ -26,37 +26,27 @@
       nixvim,
     }:
     let
-      # Define host-specific variables
-      hostConfigurations = {
-        quail = {
-          system = "aarch64-darwin";
-          configuration = ./machines/quail/configuration.nix;
-          home = ./machines/quail/home.nix;
-        };
-        "Chris-Skalendas-MacBook-Pro" = {
-          system = "aarch64-darwin";
-          configuration = ./machines/honor/configuration.nix;
-          home = ./machines/honor/home.nix;
-        };
-
-        hydrogen = {
-          system = "x86_64-linux";
-          configuration = ./machines/hydrogen/configuration.nix;
-          home = ./machines/hydrogen/home.nix;
-        };
-
-        helium = {
-          system = "aarch64-linux";
-          configuration = ./machines/helium/configuration.nix;
-          home = ./machines/helium/home.nix;
-        };
-      };
+      # Automatically generate host configurations
+      hostConfigurations = builtins.listToAttrs (
+        map (machine: {
+          name = machine;
+          value =
+            let
+              system = import ./machines/${machine}/system.nix { };
+            in
+            {
+              hostPlatform = system.hostPlatform;
+              configuration = ./machines/${machine}/configuration.nix;
+              home = ./machines/${machine}/home.nix;
+            };
+        }) (builtins.attrNames (builtins.readDir ./machines))
+      );
 
       # Helper to build nixos or darwin configurations
       buildNixosSystemConfig =
         host:
         nixpkgs.lib.nixosSystem {
-          system = host.system;
+          system = host.hostPlatform;
           modules = [
             host.configuration
             ./modules/system-common.nix
@@ -65,7 +55,7 @@
       buildDarwinSystemConfig =
         host:
         nix-darwin.lib.darwinSystem {
-          system = host.system;
+          system = host.hostPlatform;
           modules = [
             host.configuration
             ./modules/system-common.nix
@@ -75,7 +65,7 @@
       buildHomeConfig =
         { host, gui }:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${host.system};
+          pkgs = nixpkgs.legacyPackages.${host.hostPlatform};
           modules = [
             host.home
             nixvim.homeManagerModules.nixvim
