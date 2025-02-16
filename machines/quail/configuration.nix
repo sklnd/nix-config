@@ -25,4 +25,8 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   security.pam.enableSudoTouchIdAuth = true;
+
+  # Disable press-and-hold so hjkl works in vim.
+  system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
+
 }
