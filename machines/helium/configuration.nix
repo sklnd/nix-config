@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  machineDefs = import ./system.nix { };
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -18,7 +21,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "helium";
+  networking.hostName = machineDefs.hostname;
   networking.networkmanager.enable = true;
   time.timeZone = "America/Denver";
   i18n.defaultLocale = "en_US.UTF-8";
