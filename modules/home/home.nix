@@ -8,6 +8,7 @@
       tig
       zsh-powerlevel10k
       amazon-ecr-credential-helper
+      nodejs
     ];
     stateVersion = "23.11";
   };
