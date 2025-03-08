@@ -9,6 +9,7 @@
     asdf-vm
     aws-vault
     rustup
+    nginx
   ];
 
 }
