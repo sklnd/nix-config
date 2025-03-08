@@ -89,7 +89,7 @@
         quail = buildDarwinSystemConfig hostConfigurations.quail;
         "Chris-Skalendas-MacBook-Pro" =
           buildDarwinSystemConfig
-            hostConfigurations."Chris-Skalendas-MacBook-Pro";
+            hostConfigurations.honor;
       };
 
       homeConfigurations = {
@@ -106,7 +106,7 @@
           gui = true;
         };
         "chris.skalenda" = buildHomeConfig {
-          host = hostConfigurations."Chris-Skalendas-MacBook-Pro";
+          host = hostConfigurations.honor;
           gui = true;
         };
       };
