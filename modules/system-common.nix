@@ -10,6 +10,7 @@
     aws-vault
     rustup
     nginx
+    argocd
   ];
 
 }
