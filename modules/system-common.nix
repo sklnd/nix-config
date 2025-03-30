@@ -12,6 +12,11 @@
     nginx
     argocd
     mise
+    libtool
+    automake
+    autoconf
+    bison
+    cmake
   ];
 
 }
