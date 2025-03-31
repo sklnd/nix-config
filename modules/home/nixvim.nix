@@ -6,6 +6,15 @@
       viAlias = true;
       vimAlias = true;
 
+      globalOpts = {
+        tabstop = 4;
+        shiftwidth = 4;
+        softtabstop = 0;
+        expandtab = true;
+        smarttab = true;
+        number = true;
+      };
+
       colorschemes.catppuccin = {
         enable = true;
         settings = {
@@ -36,6 +45,15 @@
           preserveWindowProportions = true;
         };
       };
+
+      keymaps = [
+        # NvimTree
+        {
+          action = ":NvimTreeToggle<CR>";
+          key = "<leader>t";
+        }
+      ];
+
     };
   };
 }
