@@ -45,7 +45,8 @@
         bind l select-pane -R
 
         # reload config
-        bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
+        bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded..."
+
         unbind C-b
 
         #open man page with /
