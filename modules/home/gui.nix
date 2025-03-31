@@ -14,5 +14,9 @@
 
   xdg.configFile."wezterm/wezterm.lua".source = ../../config/wezterm/wezterm.lua;
   xdg.configFile."wezterm/appearance.lua".source = ../../config/wezterm/appearance.lua;
-  programs.wezterm.enable = true;
+  programs.wezterm = {
+    enable = true;
+    enableZshIntegration = false;
+  };
+
 }

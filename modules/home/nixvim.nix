@@ -55,6 +55,7 @@
           ];
         };
       };
+      #plugins.copilot-vim.enable = true;
       plugins.trouble = {
         enable = true;
       };
@@ -94,6 +95,7 @@
 
         };
       };
+      plugins.toggleterm.enable = true;
 
       keymaps = [
         # NvimTree
