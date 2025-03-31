@@ -26,12 +26,39 @@
 
       plugins.lsp = {
         enable = true;
+        inlayHints = true;
         servers = {
           ts_ls.enable = true;
-          pyright.enable = true;
+          basedpyright.enable = true;
           ruff.enable = true;
         };
       };
+      plugins.cmp = {
+        enable = true;
+        settings = {
+          mapping = {
+            __raw = ''
+              cmp.mapping.preset.insert({
+                ['<c-b>'] = cmp.mapping.scroll_docs(-4),
+                ['<c-f>'] = cmp.mapping.scroll_docs(4),
+                ['<c-space>'] = cmp.mapping.complete(),
+                ['<c-e>'] = cmp.mapping.abort(),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+              })
+            '';
+          };
+          autoEnableSources = true;
+          sources = [
+            { name = "nvim_lsp"; }
+            { name = "path"; }
+            { name = "buffer"; }
+          ];
+        };
+      };
+      plugins.trouble = {
+        enable = true;
+      };
+
       plugins.coq-nvim = {
         enable = true;
       };
