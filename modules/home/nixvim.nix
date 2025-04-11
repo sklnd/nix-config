@@ -14,6 +14,19 @@
         smarttab = true;
         number = true;
       };
+      # Diagnostic configuration
+      extraConfigLua = ''
+        vim.diagnostic.config({
+          virtual_text = {
+            prefix = "●",
+            spacing = 2,
+          },
+          signs = true,
+          underline = true,
+          update_in_insert = false,
+          severity_sort = true,
+        })
+      '';
 
       colorschemes.catppuccin = {
         enable = true;
