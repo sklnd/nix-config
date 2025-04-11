@@ -14,19 +14,6 @@
         smarttab = true;
         number = true;
       };
-      # Diagnostic configuration
-      extraConfigLua = ''
-        vim.diagnostic.config({
-          virtual_text = {
-            prefix = "●",
-            spacing = 2,
-          },
-          signs = true,
-          underline = true,
-          update_in_insert = false,
-          severity_sort = true,
-        })
-      '';
 
       colorschemes.catppuccin = {
         enable = true;
@@ -86,8 +73,45 @@
           preserveWindowProportions = true;
         };
       };
+
+      plugins.project-nvim = {
+        enable = true;
+        settings = {
+          detection_methods = [ "pattern" ];
+          patterns = [
+            ".git"
+            "Makefile"
+            "package.json"
+            "pyproject.toml"
+          ];
+        };
+      };
+
       plugins.telescope = {
         enable = true;
+        extensions = {
+          project = {
+            enable = true;
+            settings = {
+              base_dirs = [
+                {
+                  path = "~/git";
+                  max_depth = 2;
+                }
+              ];
+              on_project_selected = {
+                __raw = ''
+                  function(prompt_bufnr)
+                    require("telescope._extensions.project.actions").change_working_directory(prompt_bufnr, false)
+                  end
+                '';
+              };
+              hidden_files = false;
+              sync_with_nvim_tree = true;
+              theme = "dropdown";
+            };
+          };
+        };
         keymaps = {
           "<C-p>" = {
             action = "git_files";
@@ -110,8 +134,24 @@
       };
       plugins.toggleterm.enable = true;
 
+      extraConfigLua = ''
+        vim.keymap.set('n', '<leader>p', function()
+          require('telescope').extensions.project.project{}
+          end, { desc = "Telescope project picker" })
+
+        vim.diagnostic.config({
+          virtual_text = {
+            prefix = "●",
+            spacing = 2,
+          },
+          signs = true,
+          underline = true,
+          update_in_insert = false,
+          severity_sort = true,
+        })
+      '';
+
       keymaps = [
-        # NvimTree
         {
           action = ":NvimTreeToggle<CR>";
           key = "<leader>t";
