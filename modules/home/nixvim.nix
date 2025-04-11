@@ -20,6 +20,18 @@
         number = true;
       };
 
+      autoCmd = [
+        {
+          command = "checktime";
+          event = [
+            "FocusGained"
+          ];
+          pattern = [
+            "*"
+          ];
+        }
+      ];
+
       colorschemes.catppuccin = {
         enable = true;
         settings = {
@@ -98,6 +110,32 @@
       plugins.copilot-vim = {
         enable = true;
         settings.node_command = lib.getExe pkgs.nodejs_20;
+      };
+
+      plugins.indent-blankline = {
+        enable = true;
+        autoLoad = true;
+      };
+
+      plugins.rainbow-delimiters = {
+        enable = true;
+      };
+
+      plugins.treesitter = {
+        enable = true;
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          bash
+          json
+          lua
+          make
+          markdown
+          nix
+          toml
+          yaml
+          python
+          typescript
+          javascript
+        ];
       };
 
       plugins.telescope = {
