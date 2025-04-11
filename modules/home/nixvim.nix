@@ -11,7 +11,7 @@
       viAlias = true;
       vimAlias = true;
 
-      globalOpts = {
+      opts = {
         tabstop = 4;
         shiftwidth = 4;
         softtabstop = 0;
@@ -38,6 +38,7 @@
           ruff.enable = true;
         };
       };
+
       plugins.cmp = {
         enable = true;
         settings = {
@@ -60,7 +61,7 @@
           ];
         };
       };
-      #plugins.copilot-vim.enable = true;
+
       plugins.trouble = {
         enable = true;
       };
@@ -68,7 +69,9 @@
       plugins.coq-nvim = {
         enable = true;
       };
+
       plugins.web-devicons.enable = true;
+
       plugins.nvim-tree = {
         enable = true;
         filters.dotfiles = false;
