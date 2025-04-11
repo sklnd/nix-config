@@ -174,6 +174,15 @@
           action = ":NvimTreeToggle<CR>";
           key = "<leader>t";
         }
+        {
+          mode = "n";
+          key = "`";
+          action = ":ToggleTerm<CR>";
+          options = {
+            silent = true;
+            noremap = true;
+          };
+        }
       ];
 
     };
