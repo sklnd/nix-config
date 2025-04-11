@@ -214,8 +214,17 @@
         }
         {
           mode = "n";
-          key = "`";
+          key = "<C-`>";
           action = ":ToggleTerm<CR>";
+          options = {
+            silent = true;
+            noremap = true;
+          };
+        }
+        {
+          mode = "t";
+          key = "<C-`>";
+          action = "<C-\\><C-n>:ToggleTerm<CR>";
           options = {
             silent = true;
             noremap = true;
