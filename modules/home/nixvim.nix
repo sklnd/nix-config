@@ -3,6 +3,11 @@
   programs = {
     nixvim = {
       enable = true;
+      nixpkgs = {
+        config = {
+          allowUnfree = true;
+        };
+      };
       viAlias = true;
       vimAlias = true;
 
@@ -85,6 +90,11 @@
             "pyproject.toml"
           ];
         };
+      };
+
+      plugins.copilot-vim = {
+        enable = true;
+        settings.node_command = lib.getExe pkgs.nodejs_20;
       };
 
       plugins.telescope = {
