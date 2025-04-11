@@ -142,10 +142,15 @@
               };
             };
           };
-
         };
       };
+
       plugins.toggleterm.enable = true;
+
+      plugins.gitgutter = {
+        enable = true;
+        autoLoad = true;
+      };
 
       extraConfigLua = ''
         vim.keymap.set('n', '<leader>p', function()
