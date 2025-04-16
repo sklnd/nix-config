@@ -230,6 +230,15 @@
             noremap = true;
           };
         }
+        {
+          mode = "n";
+          key = "<leader>xx";
+          action = "<cmd>Trouble diagnostics toggle<cr>";
+          options = {
+            silent = true;
+            noremap = true;
+          };
+        }
       ];
 
     };
