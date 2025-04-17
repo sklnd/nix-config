@@ -1,5 +1,6 @@
 { lib, pkgs, ... }:
 {
+
   programs = {
     nixvim = {
       enable = true;
@@ -190,23 +191,6 @@
         autoLoad = true;
       };
 
-      extraConfigLua = ''
-        vim.keymap.set('n', '<leader>p', function()
-          require('telescope').extensions.project.project{}
-          end, { desc = "Telescope project picker" })
-
-        vim.diagnostic.config({
-          virtual_text = {
-            prefix = "●",
-            spacing = 2,
-          },
-          signs = true,
-          underline = true,
-          update_in_insert = false,
-          severity_sort = true,
-        })
-      '';
-
       keymaps = [
         {
           action = ":NvimTreeToggle<CR>";
@@ -240,6 +224,15 @@
           };
         }
       ];
+
+      extraFiles."lua/diagnostic.lua".source = ../../config/nvim/lua/diagnostic.lua;
+      extraFiles."lua/telescope_config.lua".source = ../../config/nvim/lua/telescope_config.lua;
+
+
+      extraConfigLua = ''
+        require('diagnostic').setup()
+        require('telescope_config').setup()
+      '';
 
     };
   };
