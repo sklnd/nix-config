@@ -1,6 +1,5 @@
 { lib, pkgs, ... }:
 {
-
   programs = {
     nixvim = {
       enable = true;
@@ -49,6 +48,20 @@
           ts_ls.enable = true;
           basedpyright.enable = true;
           ruff.enable = true;
+          lua_ls = {
+            enable = true;
+            settings = {
+                diagnostics = {
+                  globals = [ "vim" ];
+                };
+                workspace = {
+                  library = [
+                    "${pkgs.neovim}/share/nvim/runtime/lua"
+                    "${pkgs.neovim}/share/nvim/runtime/lua/vim"
+                  ];
+                };
+            };
+          };
         };
       };
 
