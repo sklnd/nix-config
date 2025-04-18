@@ -9,9 +9,6 @@
       zsh-powerlevel10k
       amazon-ecr-credential-helper
       nodejs
-      nixfmt-rfc-style
-      treefmt
-      stylua
     ];
     stateVersion = "23.11";
   };
