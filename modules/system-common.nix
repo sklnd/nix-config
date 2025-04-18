@@ -1,22 +1,22 @@
 { lib, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    nixfmt-rfc-style
-    home-manager
-    gnumake
-    treefmt
-    shfmt
-    asdf-vm
-    aws-vault
-    rustup
-    nginx
     argocd
-    mise
-    libtool
-    automake
+    asdf-vm
     autoconf
+    automake
+    aws-vault
     bison
     cmake
+    gnumake
+    home-manager
+    libtool
+    mise
+    nginx
+    nixfmt-rfc-style
+    rustup
+    shfmt
+    stylua
+    treefmt
   ];
-
 }

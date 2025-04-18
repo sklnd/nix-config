@@ -228,7 +228,6 @@
       extraFiles."lua/diagnostic.lua".source = ../../config/nvim/lua/diagnostic.lua;
       extraFiles."lua/telescope_config.lua".source = ../../config/nvim/lua/telescope_config.lua;
 
-
       extraConfigLua = ''
         require('diagnostic').setup()
         require('telescope_config').setup()

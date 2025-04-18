@@ -3,3 +3,10 @@ on-unmatched = "info"
 [formatter.nixfmt]
 command = "nixfmt"
 includes = ["**/*.nix", "*.nix"]
+
+[formatter.stylua]
+command = "stylua"
+includes = ["**/*.lua", "*.lua"]
+indent_type = "Spaces"
+indent_width = 2
+column_width = 120
