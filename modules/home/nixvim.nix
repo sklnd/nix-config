@@ -238,12 +238,12 @@
         }
       ];
 
-      extraFiles."lua/diagnostic.lua".source = ../../config/nvim/lua/diagnostic.lua;
-      extraFiles."lua/telescope_config.lua".source = ../../config/nvim/lua/telescope_config.lua;
+      extraFiles."lua/custom/diagnostic.lua".source = ../../config/nvim/lua/custom/diagnostic.lua;
+      extraFiles."lua/custom/telescope_config.lua".source = ../../config/nvim/lua/custom/telescope_config.lua;
 
       extraConfigLua = ''
-        require('diagnostic').setup()
-        require('telescope_config').setup()
+        require('custom.diagnostic').setup()
+        require('custom.telescope_config').setup()
       '';
 
     };
