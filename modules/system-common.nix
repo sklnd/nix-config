@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  nvim,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     argocd

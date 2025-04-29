@@ -11,8 +11,8 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    nvim = {
+      url = "github:sklnd/nvim";
     };
   };
 
@@ -22,7 +22,7 @@
       nixpkgs,
       home-manager,
       nix-darwin,
-      nixvim,
+      nvim,
     }:
     let
       # Automatically generate host configurations
@@ -46,18 +46,22 @@
         host:
         nixpkgs.lib.nixosSystem {
           system = host.hostPlatform;
+          specialArgs = { inherit nvim host; };
           modules = [
             host.configuration
             ./modules/system-common.nix
+            ./modules/nvim.nix
           ];
         };
       buildDarwinSystemConfig =
         host:
         nix-darwin.lib.darwinSystem {
           system = host.hostPlatform;
+          specialArgs = { inherit nvim host; };
           modules = [
             host.configuration
             ./modules/system-common.nix
+            ./modules/nvim.nix
           ];
         };
 
@@ -67,9 +71,7 @@
           pkgs = nixpkgs.legacyPackages.${host.hostPlatform};
           modules = [
             host.home
-            nixvim.homeManagerModules.nixvim
             ./modules/home/home.nix
-            ./modules/home/nixvim.nix
             ./modules/home/git.nix
             ./modules/home/tmux.nix
             ./modules/home/zsh.nix
