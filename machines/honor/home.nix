@@ -18,7 +18,7 @@
 
       shellAliases = {
         "h" = "honor";
-        "sso" = "aws-vault exec default";
+        "sso" = "aws-vault exec prod-write";
       };
     };
   };
