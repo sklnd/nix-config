@@ -23,5 +23,6 @@
     shfmt
     stylua
     treefmt
+    gnupg
   ];
 }
