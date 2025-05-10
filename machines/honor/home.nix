@@ -9,6 +9,7 @@
     git = {
       userEmail = "chris.skalenda@joinhonor.com";
     };
+    jujutsu.settings.user.email = "chris.skalenda@joinhonor.com";
     gpg.enable = true;
     zsh = {
       initExtra = ''

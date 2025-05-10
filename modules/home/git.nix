@@ -2,6 +2,19 @@
 {
 
   programs = {
+    jujutsu = {
+      enable = true;
+      settings = {
+
+        user = {
+          email = lib.mkDefault "chris@skalenda.org";
+          name = "Chris Skalenda";
+        };
+        ui = {
+          editor = "nvim";
+        };
+      };
+    };
     git = {
       enable = true;
       userName = "Chris Skalenda";
