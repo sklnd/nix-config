@@ -9,7 +9,7 @@ nix:
 	@if [ "$(shell uname)" = "Linux" ]; then \
 		nixos-rebuild switch --use-remote-sudo --flake .#; \
 	elif [ "$(shell uname)" = "Darwin" ]; then \
-		nix run nix-darwin -- switch --flake .#; \
+		sudo nix run nix-darwin -- switch --flake .#; \
 	else \
 		echo "Unsupported OS"; \
 		exit 1; \
