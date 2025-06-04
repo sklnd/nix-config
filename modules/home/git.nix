@@ -13,6 +13,10 @@
         ui = {
           default-command = "log";
           editor = "nvim";
+          pager = "delta";
+        };
+        git = {
+          write-change-id-header = true;
         };
       };
     };

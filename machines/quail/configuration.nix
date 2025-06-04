@@ -3,7 +3,10 @@ let
   machineDefs = import ./system.nix { };
 in
 {
-  environment.systemPackages = [ pkgs.home-manager pkgs.thrift ];
+  environment.systemPackages = [
+    pkgs.home-manager
+    pkgs.thrift
+  ];
   networking.hostName = machineDefs.hostname;
   nix.settings.experimental-features = "nix-command flakes";
   nixpkgs.hostPlatform = machineDefs.hostPlatform;
