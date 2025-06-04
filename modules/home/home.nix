@@ -13,6 +13,7 @@
       zsh-powerlevel10k
       amazon-ecr-credential-helper
       nodejs
+      delta
     ];
     stateVersion = "23.11";
   };
