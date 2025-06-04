@@ -11,6 +11,7 @@
           name = "Chris Skalenda";
         };
         ui = {
+          default-command = "log";
           editor = "nvim";
         };
       };
