@@ -14,6 +14,7 @@
       amazon-ecr-credential-helper
       nodejs
       delta
+      ripgrep
     ];
     stateVersion = "23.11";
   };
