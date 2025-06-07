@@ -3,6 +3,7 @@ let
   machineDefs = import ./system.nix { };
 in
 {
+  system.primaryUser = "chris";
   environment.systemPackages = [
     pkgs.home-manager
     pkgs.thrift
