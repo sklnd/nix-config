@@ -15,6 +15,7 @@
       nodejs
       delta
       ripgrep
+      slides
     ];
     stateVersion = "23.11";
   };
