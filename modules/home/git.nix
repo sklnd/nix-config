@@ -27,43 +27,43 @@
       aliases = {
         "co" = "checkout";
       };
-        ignores = [
-          # Macos
-          ".DS_Store"
+      ignores = [
+        # Macos
+        ".DS_Store"
 
-          # Windows
-          "Thumbs.db"
-          "ehthumbs.db"
-          "Desktop.ini"
+        # Windows
+        "Thumbs.db"
+        "ehthumbs.db"
+        "Desktop.ini"
 
-          # Local files
-          "mise.local.toml"
-          ".mise.local.toml"
-          ".envrc.local"
+        # Local files
+        "mise.local.toml"
+        ".mise.local.toml"
+        ".envrc.local"
 
-          # Misc
-          "*.log"
+        # Misc
+        "*.log"
 
-          # Node
-          "node_modules/"
+        # Node
+        "node_modules/"
 
-          # Python
-          ".__pycache__/"
-          "*.pyc"
-          "*.pyo"
+        # Python
+        ".__pycache__/"
+        "*.pyc"
+        "*.pyo"
 
-          # VIM
-          "*.swp"
-          "*.swo"
+        # VIM
+        "*.swp"
+        "*.swo"
 
-          # Compiled files
-          "*.out"
-          "*.class"
-          "*.exe"
-          "*.dll"
-          "*.o"
-          "*.so"
-        ];
+        # Compiled files
+        "*.out"
+        "*.class"
+        "*.exe"
+        "*.dll"
+        "*.o"
+        "*.so"
+      ];
       extraConfig = {
         "user" = {
           signingkey = "/Users/chris/.ssh/2021-ecdsa";

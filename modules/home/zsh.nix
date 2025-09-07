@@ -8,11 +8,13 @@
     zsh = {
       enable = true;
       dotDir = ".config/zsh";
-      initExtraBeforeCompInit = builtins.readFile ../../config/zsh/zshrc;
-      initExtraFirst = lib.mkDefault ''
-        # Powerlevel10k Zsh theme
-        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      '';
+      initContent = lib.mkMerge [
+        (lib.mkBefore ''
+          # Powerlevel10k Zsh theme
+          source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        '')
+        (lib.mkOrder 550 (builtins.readFile ../../config/zsh/zshrc))
+      ];
       oh-my-zsh = {
         enable = true;
         plugins = [
