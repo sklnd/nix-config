@@ -10,7 +10,7 @@
       plugins = with pkgs.tmuxPlugins; [
         {
           plugin = catppuccin;
-          extraConfig =  ''
+          extraConfig = ''
             set -g @catppuccin_flavor "mocha"
             set -g @catppuccin_window_status_style "rounded"
 

@@ -27,6 +27,43 @@
       aliases = {
         "co" = "checkout";
       };
+        ignores = [
+          # Macos
+          ".DS_Store"
+
+          # Windows
+          "Thumbs.db"
+          "ehthumbs.db"
+          "Desktop.ini"
+
+          # Local files
+          "mise.local.toml"
+          ".mise.local.toml"
+          ".envrc.local"
+
+          # Misc
+          "*.log"
+
+          # Node
+          "node_modules/"
+
+          # Python
+          ".__pycache__/"
+          "*.pyc"
+          "*.pyo"
+
+          # VIM
+          "*.swp"
+          "*.swo"
+
+          # Compiled files
+          "*.out"
+          "*.class"
+          "*.exe"
+          "*.dll"
+          "*.o"
+          "*.so"
+        ];
       extraConfig = {
         "user" = {
           signingkey = "/Users/chris/.ssh/2021-ecdsa";
@@ -34,7 +71,6 @@
         "core" = {
           editor = "vim";
           autocrlf = false;
-          excludesfile = "~/.git_global_ignore";
         };
         "push" = {
           default = "current";
