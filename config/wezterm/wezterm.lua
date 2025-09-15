@@ -14,6 +14,7 @@ end
 config.window_decorations = 'RESIZE'
 config.window_background_opacity = 0.9
 config.macos_window_background_blur = 30
+config.window_close_confirmation = 'NeverPrompt'
 
 local function segments_for_right_status(window)
     return {
