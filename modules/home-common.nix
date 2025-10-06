@@ -8,4 +8,6 @@
     };
   };
 
+  fonts.fontconfig.enable = true;
+
 }

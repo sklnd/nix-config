@@ -4,16 +4,19 @@ let
 in
 {
   system.primaryUser = "chris";
-  environment.systemPackages = [
-    pkgs.home-manager
-    pkgs.thrift
+  environment.systemPackages = with pkgs; [
+    home-manager
+    thrift
   ];
   networking.hostName = machineDefs.hostname;
   nix.settings.experimental-features = "nix-command flakes";
+  nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = machineDefs.hostPlatform;
   programs.zsh.enable = true;
   security.pam.services.sudo_local.touchIdAuth = true;
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
+  system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+  services.sketchybar.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

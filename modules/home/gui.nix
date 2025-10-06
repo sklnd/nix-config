@@ -19,4 +19,5 @@
     enableZshIntegration = false;
   };
 
+  xdg.configFile."sketchybar".source = ../../config/sketchybar;
 }
