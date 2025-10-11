@@ -6,6 +6,7 @@ in
   system.primaryUser = "chris";
   environment.systemPackages = with pkgs; [
     home-manager
+    snd-ctl
     thrift
   ];
   networking.hostName = machineDefs.hostname;

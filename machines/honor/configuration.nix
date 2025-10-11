@@ -4,6 +4,9 @@ let
 in
 {
   system.primaryUser = "chris.skalenda";
+  environment.systemPackages = with pkgs; [
+    snd-ctl
+  ];
   nix.settings.experimental-features = "nix-command flakes";
   programs.zsh.enable = true;
   nixpkgs.hostPlatform = machineDefs.hostPlatform;

@@ -25,6 +25,11 @@
       nvim,
     }:
     let
+      # Custom packages overlay
+      customPackages = final: prev: {
+        snd-ctl = final.callPackage ./pkgs/snd-ctl.nix { };
+      };
+
       # Automatically generate host configurations
       hostConfigurations = builtins.listToAttrs (
         map (machine: {
@@ -51,6 +56,7 @@
             host.configuration
             ./modules/system-common.nix
             ./modules/nvim.nix
+            { nixpkgs.overlays = [ customPackages ]; }
           ];
         };
       buildDarwinSystemConfig =
@@ -62,6 +68,7 @@
             host.configuration
             ./modules/system-common.nix
             ./modules/nvim.nix
+            { nixpkgs.overlays = [ customPackages ]; }
           ];
         };
 
@@ -109,5 +116,9 @@
           gui = true;
         };
       };
+
+      packages = nixpkgs.lib.genAttrs [ "aarch64-darwin" "x86_64-darwin" ] (system: {
+        snd-ctl = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/snd-ctl.nix { };
+      });
     };
 }
