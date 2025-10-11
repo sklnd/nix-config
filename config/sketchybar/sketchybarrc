@@ -67,6 +67,7 @@ sketchybar --add item front_app left \
     label.font="$FONT_FACE:Bold:12.0" \
     label.drawing=yes
 
+
 sketchybar --add item weather q \
     --set weather \
     icon= \
@@ -100,6 +101,14 @@ sketchybar --add item volume right \
     label.drawing=true \
     script="$PLUGIN_DIR/volume.sh" \
     --subscribe volume volume_change
+
+sketchybar --add item media e \
+    --set media \
+    update_freq=5 \
+    label.max_chars=20 \
+    scroll_texts=on \
+    script="$PLUGIN_DIR/media.sh" \
+    --subscribe media media_change
 
 sketchybar --add item wifi right \
     --set wifi \

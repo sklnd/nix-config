@@ -6,11 +6,11 @@
 
 stdenv.mkDerivation rec {
   pname = "snd-ctl";
-  version = "0.1.1";
+  version = "0.1.3";
 
   src = fetchurl {
     url = "https://github.com/sklnd/snd-ctl/releases/download/v${version}/snd-ctl-v${version}-macos.tar.gz";
-    hash = "sha256-/9Ka1S2MtysmsMO9bRLNGjawPs4I9vnuvGXW3mKmZxY=";
+    hash = "sha256-IU+0QfXrFpp2LR0KF01ssiod1TVBERLJ1CEQjihZ9iY=";
   };
 
   sourceRoot = ".";
