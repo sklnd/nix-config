@@ -19,7 +19,7 @@ sketchybar --bar \
 # label.color=0xffcad3f5
 sketchybar --default \
     label.color=0xffffffff \
-    background.color=0x9924273a \
+    background.color=0xcc24273a \
     background.corner_radius=5 \
     background.padding_right=5 \
     background.height=26 \
