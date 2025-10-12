@@ -14,9 +14,17 @@ case $INFO in
     ICON_PADDING_RIGHT=7
     ICON=
     ;;
+"Firefox")
+    ICON_PADDING_RIGHT=4
+    ICON=
+    ;;
 "Preview")
     ICON_PADDING_RIGHT=3
     ICON=
+    ;;
+"WezTerm")
+    ICON_PADDING_RIGHT=3
+    ICON=
     ;;
 *)
     ICON_PADDING_RIGHT=2
