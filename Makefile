@@ -4,6 +4,11 @@ default: nix
 home:
 	home-manager switch --flake . -b backup
 
+.PHONY: sketchybar
+sketchybar: home
+	sketchybar --reload
+
+
 .PHONY: nix
 nix:
 	@if [ "$(shell uname)" = "Linux" ]; then \

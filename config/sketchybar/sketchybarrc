@@ -4,6 +4,8 @@ FONT_FACE="JetBrainsMono Nerd Font"
 
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
+sketchybar --add event aerospace_workspace_change
+
 sketchybar --bar \
     height=32 \
     color=0x00000000 \
@@ -14,9 +16,6 @@ sketchybar --bar \
     notch_width=188 \
     display=main
 
-# Alternative background colors
-# background.color=0x66494d64
-# label.color=0xffcad3f5
 sketchybar --default \
     label.color=0xffffffff \
     background.color=0xcc24273a \
@@ -31,13 +30,20 @@ sketchybar --default \
     label.padding_left=0 \
     label.padding_right=5
 
-sketchybar --add item current_space left \
-    --set current_space \
-    background.color=0xfff5a97f \
-    icon.color=0xff24273a \
-    label.drawing=off \
-    script="$PLUGIN_DIR/current_space.sh" \
-    --subscribe current_space space_change mouse.clicked
+# Aerospace workspaces
+for sid in $(aerospace list-workspaces --all); do
+    sketchybar --add item space.$sid left \
+        --subscribe space.$sid aerospace_workspace_change \
+        --set space.$sid \
+        icon.padding_left=0 \
+        icon.padding_right=0 \
+        label.padding_left=10 \
+        label.padding_right=10 \
+        label.color=0xffffffff \
+        label="$sid" \
+        click_script="aerospace workspace $sid" \
+        script="$PLUGIN_DIR/aerospace.sh $sid"
+done
 
 sketchybar --add item front_app left \
     --set front_app \
