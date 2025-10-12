@@ -9,7 +9,9 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+  'exec-and-forget /run/current-system/sw/bin/borders active_color=0xffc29df1 inactive_color=0xff24273a1 width=10.0'
+]
 
 exec-on-workspace-change = [
   '/bin/bash',
@@ -55,11 +57,11 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 4
-inner.vertical =   4
-outer.left =       8
-outer.bottom =     8
-outer.top =        4
+inner.horizontal = 5
+inner.vertical =   5
+outer.left =       10
+outer.bottom =     10
+outer.top =        8
 outer.right =      8
 
 # 'main' binding mode declaration
@@ -107,18 +109,24 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt-b = 'workspace b' # browser
+alt-t = 'workspace t' # terminal
+alt-v = 'workspace v' # vscode
+alt-m = 'workspace m' # music
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+alt-shift-b = 'move-node-to-workspace b' # browser
+alt-shift-t = 'move-node-to-workspace t' # terminal
+alt-shift-v = 'move-node-to-workspace v' # vscode
+alt-shift-m = 'move-node-to-workspace m' # music
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -141,4 +149,20 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+[[on-window-detected]]
+    if.app-id = 'com.github.wez.wezterm'
+    run = 'move-node-to-workspace t' # mnemonics t - Terminal
+
+[[on-window-detected]]
+    if.app-id = 'org.mozilla.firefox'
+    run = 'move-node-to-workspace b' # mnemonics b - Web browser
+
+[[on-window-detected]]
+    if.app-id = 'com.microsoft.VSCode'
+    run = 'move-node-to-workspace v' # mnemonics v - vscode
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'YouTube Music'
+    run = 'move-node-to-workspace m' # mnemonics m - music
 

@@ -5,7 +5,7 @@ in
 {
   imports = [
     ../../modules/aerospace.nix
-    ../../modules/jankyborders.nix
+    #../../modules/jankyborders.nix
   ];
 
   system.primaryUser = "chris";
@@ -14,6 +14,7 @@ in
     snd-ctl
     thrift
     #sketchybar
+    jankyborders
   ];
   networking.hostName = machineDefs.hostname;
   nix.settings.experimental-features = "nix-command flakes";
