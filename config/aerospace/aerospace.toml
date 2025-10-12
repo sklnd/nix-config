@@ -166,3 +166,10 @@ alt-shift-l = ['join-with right', 'mode main']
     if.app-name-regex-substring = 'YouTube Music'
     run = 'move-node-to-workspace m' # mnemonics m - music
 
+[[on-window-detected]]
+    if.app-id = 'com.apple.systempreferences'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = 'layout floating'
