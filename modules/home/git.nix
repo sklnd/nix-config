@@ -18,8 +18,12 @@
         git = {
           write-change-id-header = true;
         };
+        aliases = {
+          tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+        };
       };
     };
+
     git = {
       enable = true;
       userName = "Chris Skalenda";
