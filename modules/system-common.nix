@@ -24,5 +24,6 @@
     stylua
     treefmt
     gnupg
+    tokei
   ];
 }
