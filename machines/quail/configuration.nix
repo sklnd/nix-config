@@ -5,15 +5,12 @@ in
 {
   imports = [
     ../../modules/aerospace.nix
-    #../../modules/jankyborders.nix
   ];
 
   system.primaryUser = "chris";
   environment.systemPackages = with pkgs; [
-    home-manager
     snd-ctl
     thrift
-    #sketchybar
     jankyborders
   ];
   networking.hostName = machineDefs.hostname;
@@ -22,8 +19,8 @@ in
   nixpkgs.hostPlatform = machineDefs.hostPlatform;
   programs.zsh.enable = true;
   security.pam.services.sudo_local.touchIdAuth = true;
-  system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
   system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+  system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
 
   services = {
     sketchybar.enable = true;
