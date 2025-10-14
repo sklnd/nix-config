@@ -57,11 +57,11 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 5
-inner.vertical =   5
+inner.horizontal = 20
+inner.vertical =   20
 outer.left =       10
 outer.bottom =     10
-outer.top =        8
+outer.top =        [{ monitor."Built-in Retina Display" = 8 }, 40]
 outer.right =      8
 
 # 'main' binding mode declaration
@@ -113,6 +113,7 @@ alt-b = 'workspace b' # browser
 alt-t = 'workspace t' # terminal
 alt-v = 'workspace v' # vscode
 alt-m = 'workspace m' # music
+alt-c = 'workspace c' # chat
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
@@ -123,6 +124,7 @@ alt-shift-b = 'move-node-to-workspace b' # browser
 alt-shift-t = 'move-node-to-workspace t' # terminal
 alt-shift-v = 'move-node-to-workspace v' # vscode
 alt-shift-m = 'move-node-to-workspace m' # music
+alt-shift-c = 'move-node-to-workspace c' # chat
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
@@ -167,9 +169,28 @@ alt-shift-l = ['join-with right', 'mode main']
     run = 'move-node-to-workspace m' # mnemonics m - music
 
 [[on-window-detected]]
+    if.app-id = 'com.tinyspeck.slackmacgap'
+    run = 'move-node-to-workspace c' # mnemonics c - chat
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'Signal'
+    run = 'move-node-to-workspace c' # mnemonics c - chat
+
+[[on-window-detected]]
     if.app-id = 'com.apple.systempreferences'
     run = 'layout floating'
 
 [[on-window-detected]]
     if.app-id = 'com.apple.finder'
     run = 'layout floating'
+
+[workspace-to-monitor-force-assignment]
+    1 = ['DELL U2719DX \(2\)', 'built-in']
+    2 = ['DELL U2719DX \(2\)', 'built-in']
+    3 = ['DELL U2719DX \(2\)', 'built-in']
+    4 = ['DELL U2719DX \(2\)', 'built-in']
+    5 = ['DELL U2719DX \(2\)', 'built-in']
+    6 = ['DELL U2719DX \(2\)', 'built-in']
+    c = ['DELL U2719DX \(1\)', 'built-in'] # vscode on DELL U2719DX (1) or built-in display
+    b = ['DELL U2719DX \(2\)', 'built-in'] # vscode on DELL U2719DX (2) or built-in display
+    v = ['DELL U2719DX \(2\)', 'built-in'] # vscode on DELL U2719DX (2) or built-in display
