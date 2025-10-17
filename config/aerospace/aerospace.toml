@@ -118,6 +118,7 @@ alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-b = 'move-node-to-workspace b' # browser
@@ -129,6 +130,7 @@ alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -185,12 +187,11 @@ alt-shift-l = ['join-with right', 'mode main']
     run = 'layout floating'
 
 [workspace-to-monitor-force-assignment]
-    1 = ['DELL U2719DX \(2\)', 'built-in']
-    2 = ['DELL U2719DX \(2\)', 'built-in']
+    1 = ['DELL U2719DX \(1\)', 'built-in']
+    2 = ['DELL U2719DX \(1\)', 'built-in']
     3 = ['DELL U2719DX \(2\)', 'built-in']
     4 = ['DELL U2719DX \(2\)', 'built-in']
     5 = ['DELL U2719DX \(2\)', 'built-in']
-    6 = ['DELL U2719DX \(2\)', 'built-in']
     c = ['DELL U2719DX \(1\)', 'built-in'] # vscode on DELL U2719DX (1) or built-in display
     b = ['DELL U2719DX \(2\)', 'built-in'] # vscode on DELL U2719DX (2) or built-in display
     v = ['DELL U2719DX \(2\)', 'built-in'] # vscode on DELL U2719DX (2) or built-in display
