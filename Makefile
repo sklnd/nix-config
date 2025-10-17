@@ -5,7 +5,7 @@ home:
 	home-manager switch --flake . -b backup
 
 .PHONY: sketchybar
-sketchybar: home
+sketchybar: nix
 	sketchybar --reload
 
 
