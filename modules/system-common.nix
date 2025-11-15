@@ -19,6 +19,7 @@
     mise
     nginx
     nixfmt-rfc-style
+    pkg-config
     rustup
     shfmt
     stylua
