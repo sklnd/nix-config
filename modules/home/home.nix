@@ -16,6 +16,7 @@
       delta
       ripgrep
       slides
+      mycli
       nerd-fonts.jetbrains-mono
     ];
     stateVersion = "23.11";
