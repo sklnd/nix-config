@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let
-  machineDefs = import ./system.nix { };
-in
-{
+{pkgs, ...}: let
+  machineDefs = import ./system.nix {};
+in {
   imports = [
     ../../modules/aerospace.nix
   ];
