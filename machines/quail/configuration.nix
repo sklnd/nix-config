@@ -1,13 +1,15 @@
-{ pkgs, ... }:
-let
-  machineDefs = import ./system.nix { };
-in
-{
+{pkgs, ...}: let
+  machineDefs = import ./system.nix {};
+in {
   imports = [
     ../../modules/aerospace.nix
   ];
 
-  system.primaryUser = "chris";
+  system = {
+    primaryUser = "chris";
+    defaults.NSGlobalDomain._HIHideMenuBar = true;
+    defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
+  };
   environment.systemPackages = with pkgs; [
     snd-ctl
     thrift
@@ -19,8 +21,6 @@ in
   nixpkgs.hostPlatform = machineDefs.hostPlatform;
   programs.zsh.enable = true;
   security.pam.services.sudo_local.touchIdAuth = true;
-  system.defaults.NSGlobalDomain._HIHideMenuBar = true;
-  system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
 
   services = {
     sketchybar.enable = true;

@@ -1,5 +1,4 @@
-{ }:
-{
+_: {
   programs.stylua = {
     enable = true;
     settings = {
@@ -9,5 +8,4 @@
   };
 
   fonts.fontconfig.enable = true;
-
 }

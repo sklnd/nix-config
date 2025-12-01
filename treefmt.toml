@@ -1,7 +1,7 @@
 on-unmatched = "info"
 
-[formatter.nixfmt]
-command = "nixfmt"
+[formatter.alejandra]
+command = "alejandra"
 includes = ["**/*.nix", "*.nix"]
 
 [formatter.stylua]

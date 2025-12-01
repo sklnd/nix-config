@@ -23,3 +23,8 @@ nix:
 .PHONY: format
 format:
 	treefmt
+
+.PHONY: check
+check:
+	statix check .
+	deadnix .

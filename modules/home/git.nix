@@ -1,11 +1,8 @@
-{ lib, pkgs, ... }:
-{
-
+{lib, ...}: {
   programs = {
     jujutsu = {
       enable = true;
       settings = {
-
         user = {
           email = lib.mkDefault "chris@skalenda.org";
           name = "Chris Skalenda";

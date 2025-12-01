@@ -1,10 +1,4 @@
-{
-  lib,
-  pkgs,
-  nvim,
-  ...
-}:
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     argocd
     asdf-vm
@@ -18,7 +12,6 @@
     libtool
     mise
     nginx
-    nixfmt-rfc-style
     pkg-config
     rustup
     shfmt
@@ -26,5 +19,8 @@
     treefmt
     gnupg
     tokei
+    deadnix
+    statix
+    alejandra
   ];
 }

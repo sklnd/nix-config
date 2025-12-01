@@ -1,9 +1,6 @@
-{ config, pkgs, ... }:
-
-let
-  machineDefs = import ./system.nix { };
-in
-{
+{pkgs, ...}: let
+  machineDefs = import ./system.nix {};
+in {
   imports = [
     ./hardware-configuration.nix
     (fetchTarball {
@@ -38,10 +35,27 @@ in
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  services = {
+    # Configure keymap in X11
+    xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
+    openssh = {
+      enable = true;
+      ports = [22];
+      authorizedKeysInHomedir = true;
+      settings = {
+        PasswordAuthentication = false;
+        AllowUsers = ["chris"];
+        UseDns = true;
+        X11Forwarding = false;
+        PermitRootLogin = "no";
+      };
+    };
+
+    tailscale.enable = true;
+    vscode-server.enable = true;
   };
 
   users.users.chris = {
@@ -62,22 +76,6 @@ in
     home-manager
     gnumake
   ];
-
-  services.openssh = {
-    enable = true;
-    ports = [ 22 ];
-    authorizedKeysInHomedir = true;
-    settings = {
-      PasswordAuthentication = false;
-      AllowUsers = [ "chris" ];
-      UseDns = true;
-      X11Forwarding = false;
-      PermitRootLogin = "no";
-    };
-  };
-
-  services.tailscale.enable = true;
-  services.vscode-server.enable = true;
 
   system.stateVersion = "24.11";
 }

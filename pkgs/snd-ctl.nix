@@ -3,7 +3,6 @@
   stdenv,
   fetchurl,
 }:
-
 stdenv.mkDerivation rec {
   pname = "snd-ctl";
   version = "0.1.3";
@@ -28,7 +27,7 @@ stdenv.mkDerivation rec {
     description = "A macOS command-line interface (CLI) tool for controlling media playback and retrieving track information";
     homepage = "https://github.com/sklnd/snd-ctl";
     license = licenses.mit;
-    maintainers = [ ];
+    maintainers = [];
     platforms = platforms.darwin; # macOS only
   };
 }
