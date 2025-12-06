@@ -38,6 +38,12 @@ config.keys = {
             args = { 'nvim', wezterm.config_file },
         }),
     },
+    -- disable alt-enter (maximize window)
+    {
+        key = 'Enter',
+        mods = 'ALT',
+        action = wezterm.action.DisableDefaultAssignment,
+    },
 }
 
 config.font_size = 14.0
