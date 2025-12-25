@@ -1,6 +1,8 @@
-{pkgs, ...}: let
-  machineDefs = import ./system.nix {};
-in {
+{ pkgs, ... }:
+let
+  machineDefs = import ./system.nix { };
+in
+{
   imports = [
     ../../modules/aerospace.nix
   ];
@@ -14,6 +16,8 @@ in {
     snd-ctl
     thrift
     jankyborders
+    claude-code
+    ncdu
   ];
   networking.hostName = machineDefs.hostname;
   nix.settings.experimental-features = "nix-command flakes";
