@@ -24,6 +24,7 @@ in
       enable = true;
       xwayland.enable = true;
     };
+    nix-ld.enable = true;
   };
 
   boot.loader.systemd-boot.enable = true;
