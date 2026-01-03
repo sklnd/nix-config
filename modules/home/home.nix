@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home = {
     packages = with pkgs; [
       gh
@@ -13,6 +14,7 @@
       slides
       mycli
       nerd-fonts.jetbrains-mono
+      aws-vault
     ];
     stateVersion = "23.11";
   };
