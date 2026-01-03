@@ -9,6 +9,9 @@ _: {
   xdg.configFile = {
     "wezterm/wezterm.lua".source = ../../config/wezterm/wezterm.lua;
     "wezterm/appearance.lua".source = ../../config/wezterm/appearance.lua;
+    "kitty/kitty.conf".source = ../../config/kitty/kitty.conf;
+    "kitty/material-darker.conf".source = ../../config/kitty/material-darker.conf;
+    "kitty/iterm2-ligth.conf".source = ../../config/kitty/iterm2-light.conf;
     "hypr/hyprland.conf".source = ../../config/hypr/hyprland.conf;
   };
   programs.wezterm = {
