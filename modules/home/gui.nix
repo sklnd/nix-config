@@ -9,6 +9,7 @@ _: {
   xdg.configFile = {
     "wezterm/wezterm.lua".source = ../../config/wezterm/wezterm.lua;
     "wezterm/appearance.lua".source = ../../config/wezterm/appearance.lua;
+    "hypr/hyprland.conf".source = ../../config/hypr/hyprland.conf;
   };
   programs.wezterm = {
     enable = true;

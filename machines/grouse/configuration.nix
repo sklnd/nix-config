@@ -1,0 +1,161 @@
+{
+  pkgs,
+  ...
+}:
+let
+  machineDefs = import ./system.nix { };
+
+in
+{
+  imports = [
+    ./hardware-configuration.nix
+    ./apple-silicon-support
+  ];
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  programs = {
+    zsh.enable = true;
+    firefox.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+  };
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = false;
+
+  networking.hostName = machineDefs.hostname;
+  networking.networkmanager.enable = true;
+  time.timeZone = "America/Denver";
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "thunderbolt"
+
+      ];
+      kernelModules = [
+        "evdi"
+      ];
+    };
+  };
+
+  services = {
+    xserver = {
+      xkb = {
+        layout = "us";
+        variant = "";
+        options = "caps:escape";
+      };
+      videoDrivers = [ "displaylink" ];
+    };
+
+    tailscale.enable = true;
+
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+
+    gnome = {
+      core-apps.enable = false;
+      core-developer-tools.enable = false;
+      games.enable = false;
+    };
+
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+
+    # Enable touchpad support
+    libinput.enable = true;
+  };
+
+  # To disable installing GNOME's suite of applications
+  # and only be left with GNOME shell.
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-tour
+    gnome-user-docs
+  ];
+
+  users.users.chris = {
+    isNormalUser = true;
+    description = "Chris Skalenda";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    shell = pkgs.zsh;
+  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  environment.systemPackages = with pkgs; [
+    chromium
+    displaylink
+    gnumake
+    home-manager
+    monaspace
+    protonvpn-gui
+    signal-desktop
+    vim
+    vscode
+    unzip
+
+    # hyprland stuff
+    wofi
+    waybar
+    playerctl
+    bibata-cursors
+    walker
+  ];
+
+  systemd.services = {
+    dlm.wantedBy = [ "multi-user.target" ];
+
+    /*
+      displaylink-server = {
+        enable = true;
+        # Ensure it starts after udev has done its work
+        requires = [ "systemd-udevd.service" ];
+        after = [ "systemd-udevd.service" ];
+        wantedBy = [ "multi-user.target" ]; # Start at boot
+        # *** THIS IS THE CRITICAL 'serviceConfig' BLOCK ***
+        serviceConfig = {
+          Type = "simple"; # Or "forking" if it forks (simple is common for daemons)
+          # The ExecStart path points to the DisplayLinkManager binary provided by the package
+          ExecStart = "${pkgs.displaylink}/bin/DisplayLinkManager";
+          # User and Group to run the service as (root is common for this type of daemon)
+          User = "root";
+          Group = "root";
+          # Environment variables that the service itself might need
+          # Environment = [ "DISPLAY=:0" ]; # Might be needed in some cases, but generally not for this
+          Restart = "on-failure";
+          RestartSec = 5; # Wait 5 seconds before restarting
+        };
+      };
+    */
+  };
+
+  networking.firewall.checkReversePath = false;
+
+  system.stateVersion = "25.11";
+}
