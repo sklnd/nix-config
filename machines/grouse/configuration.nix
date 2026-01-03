@@ -98,6 +98,7 @@ in
     isNormalUser = true;
     description = "Chris Skalenda";
     extraGroups = [
+      "docker"
       "networkmanager"
       "wheel"
     ];
@@ -106,6 +107,10 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  virtualisation.docker = {
+    enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     chromium
@@ -118,6 +123,10 @@ in
     vim
     vscode
     unzip
+    gcc
+    docker
+    claude-code
+    kitty
 
     # hyprland stuff
     wofi
