@@ -135,6 +135,8 @@ in
     docker
     claude-code
     kitty
+    bluetui
+    libinput
 
     # hyprland stuff
     wofi
