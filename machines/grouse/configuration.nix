@@ -77,6 +77,7 @@ in
     gnome = {
       core-developer-tools.enable = false;
       games.enable = false;
+      gnome-keyring.enable = true;
     };
 
     pipewire = {
@@ -86,6 +87,12 @@ in
 
     # Enable touchpad support
     libinput.enable = true;
+
+  };
+  security.pam.services = {
+    gdm.enableGnomeKeyring = true;
+    gdm-password.enableGnomeKeyring = true;
+    hyprland.enableGnomeKeyring = true;
   };
 
   # To disable installing GNOME's suite of applications
