@@ -139,11 +139,11 @@ in
     libinput
 
     # hyprland stuff
-    wofi
+    rofi
     waybar
+    hyprpanel
     playerctl
     bibata-cursors
-    walker
   ];
 
   systemd.services = {
