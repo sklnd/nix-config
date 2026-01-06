@@ -24,7 +24,13 @@ in
       enable = true;
       xwayland.enable = true;
     };
+    # Run binaries from mise, uv in nixos
     nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [
+      # python deps
+      libgcc
+      zlib
+    ];
   };
 
   boot.loader.systemd-boot.enable = true;
