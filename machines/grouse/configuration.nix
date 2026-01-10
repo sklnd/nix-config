@@ -38,6 +38,10 @@ in
 
   networking.hostName = machineDefs.hostname;
   networking.networkmanager.enable = true;
+  networking.extraHosts = ''
+    127.0.0.1 localstack
+  '';
+
   time.timeZone = "America/Denver";
   i18n.defaultLocale = "en_US.UTF-8";
 
