@@ -98,6 +98,14 @@ in
     # Enable touchpad support
     libinput.enable = true;
 
+    udev.extraRules = ''
+      # Rules for Oryx web flashing and live training
+      KERNEL=="hidraw*", ATTRS{idVendor}=="16c0", MODE="0664", GROUP="plugdev"
+      KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0664", GROUP="plugdev"
+
+      # Keymapp / Wally Flashing rules for the Moonlander
+      SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666", SYMLINK+="stm32_dfu"
+    '';
   };
   security.pam.services = {
     gdm.enableGnomeKeyring = true;
@@ -119,6 +127,7 @@ in
       "docker"
       "networkmanager"
       "wheel"
+      "plugdev"
     ];
     shell = pkgs.zsh;
   };
