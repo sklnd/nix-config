@@ -15,6 +15,7 @@
       mycli
       nerd-fonts.jetbrains-mono
       aws-vault
+      neovim-remote
     ];
     stateVersion = "23.11";
   };
