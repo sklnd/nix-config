@@ -156,6 +156,16 @@ in
     kitty
     bluetui
     libinput
+    dbvisualizer
+    jre
+    dig
+    gnutar
+    dnsutils
+    unixtools.netstat
+    inetutils
+    coreutils
+    gimp
+    zip
 
     # hyprland stuff
     rofi
