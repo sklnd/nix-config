@@ -152,6 +152,8 @@ in
     rofi
     waybar
     hyprpanel
+    hyprlock
+    hypridle
     playerctl
     bibata-cursors
   ];

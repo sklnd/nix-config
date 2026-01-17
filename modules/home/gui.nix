@@ -13,6 +13,8 @@ _: {
     "kitty/material-darker.conf".source = ../../config/kitty/material-darker.conf;
     "kitty/iterm2-ligth.conf".source = ../../config/kitty/iterm2-light.conf;
     "hypr/hyprland.conf".source = ../../config/hypr/hyprland.conf;
+    "hypr/hyprlock.conf".source = ../../config/hypr/hyprlock.conf;
+    "hypr/hypridle.conf".source = ../../config/hypr/hypridle.conf;
   };
   programs.wezterm = {
     enable = true;
