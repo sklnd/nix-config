@@ -81,7 +81,7 @@
           (
             if gui
             then ./modules/home/gui.nix
-            else ./modules/home/cli.nix
+            else {}
           )
         ];
       };
