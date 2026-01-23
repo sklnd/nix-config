@@ -7,6 +7,7 @@
       "networkmanager"
       "wheel"
       "plugdev"
+      "thelounge"
     ];
     shell = pkgs.zsh;
   };

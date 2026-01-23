@@ -10,14 +10,15 @@ in {
     ../../modules/system/nix.nix
     ../../modules/system/users.nix
 
+    ../../modules/services/caddy.nix
+    ../../modules/services/grafana.nix
     ../../modules/services/home-assistant.nix
     ../../modules/services/plex.nix
     ../../modules/services/prometheus.nix
     ../../modules/services/ssh.nix
+    ../../modules/services/the-lounge.nix
     ../../modules/services/vscode-server.nix
     ../../modules/services/xserver.nix
-    ../../modules/services/caddy.nix
-    ../../modules/services/grafana.nix
 
     ../../modules/hardware/bluetooth.nix
   ];
