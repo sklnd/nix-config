@@ -8,6 +8,9 @@
     file.".p10k.zsh".text = builtins.readFile ../../config/zsh/p10k.zsh;
     stateVersion = "23.11";
   };
+  home.packages = with pkgs; [
+    zsh-powerlevel10k
+  ];
   programs = {
     zsh = {
       enable = true;

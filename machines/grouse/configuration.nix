@@ -61,17 +61,6 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
-      # CLI
-      bluetui
-
-      # GUI programs
-      chromium
-      protonvpn-gui
-      signal-desktop
-      kitty
-      dbvisualizer
-      gimp
-
       # Misc
       firefoxpwa
       libsecret
