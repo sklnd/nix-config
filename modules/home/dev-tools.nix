@@ -2,9 +2,6 @@
 {pkgs, ...}: {
   home = {
     packages = with pkgs; [
-      gcc
-      jre
-      overmind
       amazon-ecr-credential-helper
       argocd
       asdf-vm
@@ -12,15 +9,19 @@
       automake
       aws-vault
       bison
+      claude-code
       cmake
       delta
+      gcc
       gh
       hub
+      jre
       libtool
       mycli
       neovim-remote
       nginx
       nodejs
+      overmind
       pkg-config
       ripgrep
       rustup

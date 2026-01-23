@@ -61,8 +61,6 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
-      # move this to home-manager when unfree is enabled
-      claude-code
       # CLI
       bluetui
 
