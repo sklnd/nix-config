@@ -61,25 +61,8 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
-      home-manager
-
-      # Dev utils
-      claude-code
-      gcc
-      gnumake
-      jre
-      overmind
-
       # CLI
       bluetui
-      coreutils
-      dig
-      dnsutils
-      gnutar
-      inetutils
-      unixtools.netstat
-      unzip
-      zip
 
       # GUI programs
       chromium

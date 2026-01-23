@@ -2,6 +2,10 @@
 {pkgs, ...}: {
   home = {
     packages = with pkgs; [
+      claude-code
+      gcc
+      jre
+      overmind
       amazon-ecr-credential-helper
       argocd
       asdf-vm
