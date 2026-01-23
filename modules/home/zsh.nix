@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }: {
   home = {
@@ -10,7 +11,7 @@
   programs = {
     zsh = {
       enable = true;
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       initContent = lib.mkMerge [
         (lib.mkBefore ''
           # Powerlevel10k Zsh theme
