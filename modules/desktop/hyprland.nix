@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -20,5 +19,4 @@
     hyprland.enableGnomeKeyring = true;
     hyprlock.enableGnomeKeyring = true;
   };
-
 }

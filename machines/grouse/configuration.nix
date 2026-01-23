@@ -1,12 +1,6 @@
-{
-  pkgs,
-  ...
-}:
-let
-  machineDefs = import ./system.nix { };
-
-in
-{
+{pkgs, ...}: let
+  machineDefs = import ./system.nix {};
+in {
   imports = [
     ./hardware-configuration.nix
     ./apple-silicon-support
@@ -23,6 +17,7 @@ in
 
     ../../modules/services/audio.nix
     ../../modules/services/docker.nix
+    ../../modules/services/xserver.nix
 
     ../../modules/hardware/displaylink.nix
     ../../modules/hardware/input.nix
@@ -30,10 +25,9 @@ in
   ];
 
   programs = {
-    zsh.enable = true;
     firefox = {
       enable = true;
-      nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
+      nativeMessagingHosts.packages = [pkgs.firefoxpwa];
     };
     gnupg.agent = {
       enable = true;
@@ -49,14 +43,6 @@ in
   # systemd.targets.hybrid-sleep.enable = true;
 
   services = {
-    xserver = {
-      xkb = {
-        layout = "us";
-        variant = "";
-        options = "caps:escape";
-      };
-    };
-
     dbus.packages = [
       pkgs.gnome-keyring
       pkgs.gcr
@@ -67,7 +53,6 @@ in
     #   lidSwitch = "suspend";
     #   lidSwitchExternalPower = "suspend";
     # };
-
   };
 
   security.pam.services = {
@@ -94,7 +79,6 @@ in
       inetutils
       unixtools.netstat
       unzip
-      vim
       zip
 
       # GUI programs
@@ -115,7 +99,7 @@ in
   };
 
   systemd.services = {
-    dlm.wantedBy = [ "multi-user.target" ];
+    dlm.wantedBy = ["multi-user.target"];
   };
 
   system.stateVersion = "25.11";

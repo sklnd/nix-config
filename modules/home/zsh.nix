@@ -2,8 +2,7 @@
   lib,
   pkgs,
   ...
-}:
-{
+}: {
   home = {
     file.".p10k.zsh".text = builtins.readFile ../../config/zsh/p10k.zsh;
     stateVersion = "23.11";

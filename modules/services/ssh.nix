@@ -1,12 +1,11 @@
-{ ... }:
-{
+{...}: {
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+    ports = [22];
     authorizedKeysInHomedir = true;
     settings = {
       PasswordAuthentication = false;
-      AllowUsers = [ "chris" ];
+      AllowUsers = ["chris"];
       UseDns = true;
       X11Forwarding = false;
       PermitRootLogin = "no";

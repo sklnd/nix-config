@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  services.xserver.videoDrivers = [ "displaylink" ];
+{pkgs, ...}: {
+  services.xserver.videoDrivers = ["displaylink"];
   environment.systemPackages = with pkgs; [
     displaylink
   ];

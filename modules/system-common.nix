@@ -1,28 +1,26 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    home-manager
+
+    # core cli tools
+    coreutils
+    dig
+    dnsutils
+    gnupg
+    gnutar
+    inetutils
+    killall
+    unixtools.netstat
+    unzip
+    zip
+
+    # Required for nix repo development
     alejandra
-    argocd
-    asdf-vm
-    autoconf
-    automake
-    aws-vault
-    bison
-    cmake
     deadnix
     gnumake
-    gnupg
-    home-manager
-    killall
-    libtool
-    mise
-    nginx
-    pkg-config
-    rustup
-    shfmt
     statix
-    stylua
-    tokei
     treefmt
   ];
+
+  programs.zsh.enable = true;
 }

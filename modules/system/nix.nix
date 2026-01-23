@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs = {
     # Run binaries from the internet (mise, uv) in nixos
     nix-ld = {
