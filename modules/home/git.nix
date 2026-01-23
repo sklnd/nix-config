@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   programs = {
     jujutsu = {
       enable = true;
@@ -9,8 +10,7 @@
         };
         ui = {
           default-command = "log";
-          #editor = "nvr -cc split --remote-wait +'setlocal bufhidden=wipe'";
-          editor = "nvr --remote-wait";
+          editor = "nvim";
           pager = "delta";
         };
         git = {
