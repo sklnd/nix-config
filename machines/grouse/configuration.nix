@@ -19,6 +19,7 @@ in {
     ../../modules/services/docker.nix
     ../../modules/services/xserver.nix
 
+    ../../modules/hardware/asahi.nix
     ../../modules/hardware/displaylink.nix
     ../../modules/hardware/input.nix
     ../../modules/hardware/moonlander.nix
