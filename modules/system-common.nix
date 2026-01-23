@@ -1,5 +1,7 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
+    alejandra
     argocd
     asdf-vm
     autoconf
@@ -7,20 +9,20 @@
     aws-vault
     bison
     cmake
+    deadnix
     gnumake
+    gnupg
     home-manager
+    killall
     libtool
     mise
     nginx
     pkg-config
     rustup
     shfmt
-    stylua
-    treefmt
-    gnupg
-    tokei
-    deadnix
     statix
-    alejandra
+    stylua
+    tokei
+    treefmt
   ];
 }
