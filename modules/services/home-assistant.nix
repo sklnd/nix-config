@@ -9,9 +9,10 @@
     enable = true;
     extraComponents = [
       "esphome"
+      "hue"
       "met"
       "radio_browser"
-      "hue"
+      "shelly"
     ];
     config = {
       # Includes dependencies for a basic setup
