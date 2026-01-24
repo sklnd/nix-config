@@ -22,5 +22,7 @@
       "hypr/hyprlock.conf".source = ../../config/hypr/hyprlock.conf;
       "hypr/hypridle.conf".source = ../../config/hypr/hypridle.conf;
     };
+
+    programs.vscode.enable = true;
   };
 }
