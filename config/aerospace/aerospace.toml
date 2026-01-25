@@ -10,7 +10,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget /run/current-system/sw/bin/borders active_color=0xffc29df1 inactive_color=0xff24273a1 width=10.0'
+  'exec-and-forget /run/current-system/sw/bin/borders active_color=gradient\(top_left=0xee33ccff,bottom_right=0xee00ff99\) inactive_color=0xaa595959 width=7'
 ]
 
 exec-on-workspace-change = [
