@@ -3,6 +3,7 @@
     [
       ncdu
       slides
+      bat
     ]
     # macos specific
     ++ lib.optionals stdenv.isDarwin [

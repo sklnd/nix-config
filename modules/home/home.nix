@@ -8,6 +8,11 @@
       nerd-fonts.jetbrains-mono
     ];
     stateVersion = "23.11";
+
+    shellAliases = {
+      ls = "ls --color";
+      cat = "bat";
+    };
   };
 
   nixpkgs = {
