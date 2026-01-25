@@ -24,12 +24,16 @@
       ];
       oh-my-zsh = {
         enable = true;
-        plugins = [
-          "git"
-          "scd"
-          "dotenv"
-          #"ssh-agent"
-        ];
+        plugins =
+          [
+            "git"
+            "scd"
+            "dotenv"
+          ]
+          # Use ssh-agent on darwin only
+          ++ lib.optionals pkgs.stdenv.isDarwin [
+            "ssh-agent"
+          ];
       };
     };
   };

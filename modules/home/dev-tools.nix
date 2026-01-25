@@ -20,6 +20,7 @@
       mycli
       neovim-remote
       nginx
+      ngrok
       nodejs
       overmind
       pkg-config
