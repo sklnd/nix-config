@@ -9,7 +9,6 @@
       automake
       aws-vault
       bison
-      claude-code
       cmake
       delta
       gcc
@@ -31,6 +30,10 @@
       stylua
       tig
       tokei
+
+      # agent things
+      claude-code
+      opencode
     ];
   };
 
