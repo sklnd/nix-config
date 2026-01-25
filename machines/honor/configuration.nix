@@ -15,6 +15,7 @@ in {
   environment.systemPackages = with pkgs; [
     snd-ctl
     jankyborders
+    ngrok
   ];
   nix.settings.experimental-features = "nix-command flakes";
   nixpkgs.config.allowUnfree = true;
