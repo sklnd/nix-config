@@ -46,7 +46,12 @@
     direnv.enable = true;
     mise = {
       enable = true;
-      enableZshIntegration = true;
+      globalConfig = {
+        settings = {
+          experimental = true;
+          activate_aggressive = true;
+        };
+      };
     };
   };
 }
