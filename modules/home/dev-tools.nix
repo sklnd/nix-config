@@ -5,7 +5,6 @@
       [
         amazon-ecr-credential-helper
         argocd
-        asdf-vm
         autoconf
         automake
         aws-vault
@@ -34,6 +33,8 @@
         # agent things
         claude-code
         opencode
+
+        (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
       ]
       # nixos-specific
       ++ lib.optionals (!stdenv.isDarwin) [
