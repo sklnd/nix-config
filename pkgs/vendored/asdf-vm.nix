@@ -1,5 +1,6 @@
 # asdf-vm vendored from nixos-25.11
-# After this, asdf-vim was upgraded to 0.18.0, which is incompatible with asdf-direnv
+# After this, asdf-vm was upgraded to 0.18.0, which is incompatible with asdf-direnv
+# https://raw.githubusercontent.com/NixOS/nixpkgs/refs/heads/nixos-25.11/pkgs/by-name/as/asdf-vm/package.nix
 {
   stdenv,
   lib,
