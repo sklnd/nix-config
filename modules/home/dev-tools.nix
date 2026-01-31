@@ -33,6 +33,7 @@
         # agent things
         claude-code
         opencode
+        github-copilot-cli
 
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
       ]
