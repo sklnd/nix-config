@@ -15,6 +15,8 @@ in {
     ../../modules/services/ssh.nix
     ../../modules/services/vscode-server.nix
     ../../modules/services/xserver.nix
+
+    ../../modules/hardware/bluetooth.nix
   ];
 
   networking.hostName = machineDefs.hostname;

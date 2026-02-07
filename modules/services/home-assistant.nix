@@ -8,6 +8,7 @@
   services.home-assistant = {
     enable = true;
     extraComponents = [
+      "aranet"
       "esphome"
       "hue"
       "met"
