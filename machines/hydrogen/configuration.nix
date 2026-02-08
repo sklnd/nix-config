@@ -16,6 +16,8 @@ in {
     ../../modules/services/ssh.nix
     ../../modules/services/vscode-server.nix
     ../../modules/services/xserver.nix
+    ../../modules/services/caddy.nix
+    ../../modules/services/grafana.nix
 
     ../../modules/hardware/bluetooth.nix
   ];

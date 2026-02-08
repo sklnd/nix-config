@@ -11,25 +11,25 @@ scrape_configs:
         refresh_interval: 60s
 
     relabel_configs:
-      - source_labels: ["__meta_ecs_service_name"]
+      - source_labels: ["__meta_ecs_service"]
         regex: "api-service-(blue|green)"
         action: keep
 
-      - source_labels: ["__meta_ecs_task_private_ip"]
+      - source_labels: ["__meta_ecs_ip_address"]
         target_label: "__address__"
         replacement: "${1}:8000"
 
       - target_label: "environment"
         replacement: "dev"
 
-      - source_labels: ["__meta_ecs_cluster_name"]
+      - source_labels: ["__meta_ecs_cluster"]
         target_label: "cluster"
 
-      - source_labels: ["__meta_ecs_service_name"]
+      - source_labels: ["__meta_ecs_service"]
         target_label: "service"
 
-      - source_labels: ["__meta_ecs_container_name"]
-        regex: "api-container-(blue|green)"
+      - source_labels: ["__meta_ecs_service"]
+        regex: "api-service-(blue|green)"
         target_label: "deployment"
         replacement: "${1}"
 
