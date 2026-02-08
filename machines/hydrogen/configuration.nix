@@ -12,6 +12,7 @@ in {
 
     ../../modules/services/home-assistant.nix
     ../../modules/services/plex.nix
+    ../../modules/services/prometheus.nix
     ../../modules/services/ssh.nix
     ../../modules/services/vscode-server.nix
     ../../modules/services/xserver.nix
