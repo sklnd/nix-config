@@ -4,8 +4,8 @@
       enable = true;
       settings = {
         user = {
-          email = lib.mkDefault "chris@skalenda.org";
           name = "Chris Skalenda";
+          email = lib.mkDefault "chris@skalenda.org";
         };
         ui = {
           default-command = "log";
@@ -30,10 +30,49 @@
 
     git = {
       enable = true;
-      userName = "Chris Skalenda";
-      userEmail = lib.mkDefault "chris@skalenda.org";
-      aliases = {
-        "co" = "checkout";
+      settings = {
+        user = {
+          name = "Chris Skalenda";
+          email = lib.mkDefault "chris@skalenda.org";
+        };
+        aliase = {
+          "co" = "checkout";
+        };
+        "user" = {
+          signingkey = "/Users/chris/.ssh/2021-ecdsa";
+        };
+        "core" = {
+          editor = "vim";
+          autocrlf = false;
+        };
+        "push" = {
+          default = "current";
+        };
+        "color" = {
+          "status" = {
+            added = "green bold";
+            changed = "red bold strike";
+            untracked = "cyan";
+            branch = "yellow black bold ul";
+          };
+        };
+        "pull" = {
+          ff = "only";
+        };
+        "filter" = {
+          "lfs" = {
+            clean = "git-lfs clean -- %f";
+            smudge = "git-lfs smudge -- %f";
+            process = "git-lfs filter-process";
+            required = true;
+          };
+        };
+        "init" = {
+          defaultBranch = "main";
+        };
+        "gpg" = {
+          format = "ssh";
+        };
       };
       ignores = [
         # Macos
@@ -72,43 +111,6 @@
         "*.o"
         "*.so"
       ];
-      extraConfig = {
-        "user" = {
-          signingkey = "/Users/chris/.ssh/2021-ecdsa";
-        };
-        "core" = {
-          editor = "vim";
-          autocrlf = false;
-        };
-        "push" = {
-          default = "current";
-        };
-        "color" = {
-          "status" = {
-            added = "green bold";
-            changed = "red bold strike";
-            untracked = "cyan";
-            branch = "yellow black bold ul";
-          };
-        };
-        "pull" = {
-          ff = "only";
-        };
-        "filter" = {
-          "lfs" = {
-            clean = "git-lfs clean -- %f";
-            smudge = "git-lfs smudge -- %f";
-            process = "git-lfs filter-process";
-            required = true;
-          };
-        };
-        "init" = {
-          defaultBranch = "main";
-        };
-        "gpg" = {
-          format = "ssh";
-        };
-      };
     };
   };
 }
