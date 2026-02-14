@@ -4,7 +4,7 @@
     packages = with pkgs;
       [
         amazon-ecr-credential-helper
-        argocd
+        #argocd
         autoconf
         automake
         aws-vault
