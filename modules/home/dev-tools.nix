@@ -4,7 +4,7 @@
     packages = with pkgs;
       [
         amazon-ecr-credential-helper
-        #argocd
+        # argocd
         autoconf
         automake
         aws-vault
@@ -35,6 +35,7 @@
         opencode
         github-copilot-cli
 
+        (pkgs.callPackage ../../pkgs/vendored/argocd.nix {})
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
       ]
       # nixos-specific
