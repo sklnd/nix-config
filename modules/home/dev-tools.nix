@@ -28,6 +28,7 @@
         silver-searcher
         stylua
         tig
+        tilt
         tokei
 
         # agent things
