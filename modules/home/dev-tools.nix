@@ -12,6 +12,7 @@
         cmake
         delta
         gh
+        grpcurl
         hub
         jre
         libtool
@@ -27,6 +28,7 @@
         shfmt
         silver-searcher
         stylua
+        temporal-cli
         tig
         tilt
         tokei
