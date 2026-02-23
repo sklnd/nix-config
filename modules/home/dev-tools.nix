@@ -32,6 +32,7 @@
         tig
         tilt
         tokei
+        xz
 
         # agent things
         claude-code
