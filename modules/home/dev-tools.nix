@@ -23,6 +23,7 @@
         nodejs
         overmind
         pkg-config
+        postgresql
         ripgrep
         rustup
         shfmt
