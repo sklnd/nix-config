@@ -19,10 +19,11 @@
       Type = "oneshot";
       ExecStart = pkgs.writeShellScript "tailscale-cert" ''
         ${pkgs.tailscale}/bin/tailscale cert ${config.networking.hostName}.tail51d48.ts.net.crt
-        chgrp tailscale-cert /var/lib/tailscale/certs/*
-        chmod 660 /var/lib/tailscale
-        chmod 660 /var/lib/tailscale/certs
-        chmod 640 /var/lib/tailscale/certs/*.key
+        ${pkgs.coreutils}/bin/chgrp tailscale-cert /var/lib/tailscale
+        ${pkgs.coreutils}/bin/chgrp tailscale-cert /var/lib/tailscale/certs/*
+        ${pkgs.coreutils}/bin/chmod 770 /var/lib/tailscale
+        ${pkgs.coreutils}/bin/chmod 770 /var/lib/tailscale/certs
+        ${pkgs.coreutils}/bin/chmod 640 /var/lib/tailscale/certs/*.key
       '';
     };
   };
