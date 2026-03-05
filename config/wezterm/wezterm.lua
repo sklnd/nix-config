@@ -48,7 +48,7 @@ config.keys = {
 
 config.font_size = 14.0
 config.font = wezterm.font({
-    family = 'Monaspace Neon',
+    family = 'Monaspace Neon NF',
     weight = 'Medium',
     harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
 })
