@@ -7,6 +7,8 @@ in {
     ../../modules/system/nix-darwin.nix
     ../../modules/system/security-darwin.nix
     ../../modules/system/fonts.nix
+
+    ../../modules/services/dnsmasq.nix
   ];
   nixpkgs.hostPlatform = machineDefs.hostPlatform;
   ids.gids.nixbld = 350;
