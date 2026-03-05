@@ -8,6 +8,10 @@ in {
     };
     defaults.NSGlobalDomain._HIHideMenuBar = true;
     defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
+    defaults.NSGlobalDomain.KeyRepeat = 2;
+    defaults.NSGlobalDomain.InitialKeyRepeat = 15;
+    defaults.NSGlobalDomain."com.apple.swipescrolldirection" = false;
+    defaults.dock.autohide = true;
   };
   environment.systemPackages = with pkgs; [
     jankyborders
