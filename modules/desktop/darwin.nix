@@ -2,6 +2,10 @@
   aerospaceConfig = builtins.readFile ../../config/aerospace/aerospace.toml;
 in {
   system = {
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
+    };
     defaults.NSGlobalDomain._HIHideMenuBar = true;
     defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
   };
