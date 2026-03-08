@@ -15,6 +15,9 @@
         git = {
           write-change-id-header = true;
         };
+        remotes.origin = {
+          auto-track-created-bookmarks = "*";
+        };
         aliases = {
           tug = [
             "bookmark"
