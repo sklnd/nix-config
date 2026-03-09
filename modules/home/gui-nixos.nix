@@ -11,7 +11,7 @@
       gimp
       kitty
       protonvpn-gui
-      signal-desktop
+      (signal-desktop.override {commandLineArgs = "--password-store=gnome-libsecret";})
     ];
 
     xdg.configFile = {
