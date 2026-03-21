@@ -50,6 +50,9 @@
         unbind A
         bind A command-prompt "rename-window %%"
 
+
+        # Default mouse on
+        set -g mouse on
         # Toggle mouse on
         bind m \
           set -g mouse on \;\
@@ -63,6 +66,9 @@
         # Make easy to remember split bindings
         bind | split-window -h
         bind - split-window -v
+
+        set -g extended-keys on
+        set -g extended-keys-format csi-u
 
         set -g default-command ${pkgs.zsh}/bin/zsh
       '';
