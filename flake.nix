@@ -14,6 +14,7 @@
     nvim = {
       url = "github:sklnd/nvim";
     };
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs = {
@@ -21,6 +22,7 @@
     home-manager,
     nix-darwin,
     nvim,
+    llm-agents,
     ...
   }: let
     # Custom packages overlay
@@ -72,6 +74,7 @@
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${host.hostPlatform};
+        extraSpecialArgs = {inherit nvim host llm-agents;};
         modules = [
           host.home
           ./modules/home/home.nix
