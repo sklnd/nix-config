@@ -1,7 +1,12 @@
 # Configuration and tooling for software development
-{pkgs, ...}: {
+{
+  pkgs,
+  llm-agents,
+  ...
+}: {
   home = {
     packages = with pkgs;
+    with llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
       [
         amazon-ecr-credential-helper
         # argocd
@@ -21,7 +26,7 @@
         nginx
         ngrok
         nodejs
-        overmind
+        ollama
         pkg-config
         postgresql
         ripgrep
@@ -37,8 +42,10 @@
 
         # agent things
         claude-code
-        opencode
         github-copilot-cli
+        opencode
+        pi
+        rtk
 
         (pkgs.callPackage ../../pkgs/vendored/argocd.nix {})
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
@@ -63,5 +70,8 @@
     };
   };
 
-  xdg.configFile."opencode/opencode.jsonc".source = ../../config/opencode/opencode.jsonc;
+  xdg.configFile = {
+    "opencode/opencode.jsonc".source = ../../config/opencode/opencode.jsonc;
+    "npm/npmrc".source = ../../config/npm/npmrc;
+  };
 }
