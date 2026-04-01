@@ -10,12 +10,14 @@
       [
         amazon-ecr-credential-helper
         # argocd
+        acli
         autoconf
         automake
         aws-vault
         bison
         cmake
         delta
+        fd
         gh
         grpcurl
         hub
@@ -25,7 +27,6 @@
         neovim-remote
         nginx
         ngrok
-        nodejs
         ollama
         pkg-config
         postgresql
@@ -39,16 +40,18 @@
         tig
         tilt
         tokei
+        yq
         xz
+
+        # things for gondolin
+        e2fsprogs
+        lz4
 
         # agent things
         claude-code
         github-copilot-cli
         opencode
-        pi
         rtk
-
-        (pkgs.callPackage ../../pkgs/gondolin.nix {})
 
         (pkgs.callPackage ../../pkgs/vendored/argocd.nix {})
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
@@ -76,6 +79,5 @@
 
   xdg.configFile = {
     "opencode/opencode.jsonc".source = ../../config/opencode/opencode.jsonc;
-    "npm/npmrc".source = ../../config/npm/npmrc;
   };
 }

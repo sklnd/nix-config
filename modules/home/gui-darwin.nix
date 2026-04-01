@@ -7,8 +7,6 @@
     enable = false;
   };
 
-
-
   config = lib.mkIf (pkgs.stdenv.isDarwin) {
     xdg.configFile."sketchybar".source = ../../config/sketchybar;
     programs.wezterm.enable = true;
