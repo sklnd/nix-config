@@ -52,6 +52,7 @@
 
         (pkgs.callPackage ../../pkgs/vendored/argocd.nix {})
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
+        (pkgs.callPackage ../../pkgs/vendored/td.nix {})
       ]
       # nixos-specific
       ++ lib.optionals (!stdenv.isDarwin) [
