@@ -29,6 +29,7 @@
         ollama
         pkg-config
         postgresql
+        qemu
         ripgrep
         rustup
         shfmt
