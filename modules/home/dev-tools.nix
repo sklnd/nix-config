@@ -48,6 +48,8 @@
         pi
         rtk
 
+        (pkgs.callPackage ../../pkgs/gondolin.nix {})
+
         (pkgs.callPackage ../../pkgs/vendored/argocd.nix {})
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
       ]
