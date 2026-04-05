@@ -3,6 +3,9 @@
     enable = true;
 
     settings = {
+      # previously hard-coded secret key. The grafana setup doesn't have any secret data in it,
+      # so this is probably fine.
+      security.secret_key = "SW2YcwTIb9zpOOhoPsMm";
       server = {
         http_addr = "127.0.0.1";
         http_port = 3000;
