@@ -123,8 +123,12 @@
       };
     };
 
-    packages = nixpkgs.lib.genAttrs ["aarch64-darwin" "x86_64-darwin"] (system: {
-      snd-ctl = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/snd-ctl.nix {};
-    });
+    packages = nixpkgs.lib.genAttrs ["aarch64-darwin" "x86_64-darwin" "aarch64-linux" "x86_64-linux"] (system:
+      {
+        pup = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/vendored/pup.nix {};
+      }
+      // nixpkgs.lib.optionalAttrs (builtins.elem system ["aarch64-darwin" "x86_64-darwin"]) {
+        snd-ctl = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/snd-ctl.nix {};
+      });
   };
 }
