@@ -125,6 +125,7 @@
 
     packages = nixpkgs.lib.genAttrs ["aarch64-darwin" "x86_64-darwin" "aarch64-linux" "x86_64-linux"] (system:
       {
+        gws = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/vendored/gws.nix {};
         pup = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/vendored/pup.nix {};
       }
       // nixpkgs.lib.optionalAttrs (builtins.elem system ["aarch64-darwin" "x86_64-darwin"]) {
