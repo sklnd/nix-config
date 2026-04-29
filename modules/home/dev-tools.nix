@@ -74,6 +74,9 @@
           experimental = true;
           activate_aggressive = true;
         };
+        tools = {
+          node = "24";
+        };
       };
     };
   };
