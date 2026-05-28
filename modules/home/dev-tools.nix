@@ -80,8 +80,4 @@
       };
     };
   };
-
-  xdg.configFile = {
-    "opencode/opencode.jsonc".source = ../../config/opencode/opencode.jsonc;
-  };
 }
