@@ -50,7 +50,6 @@
         # agent things
         claude-code
         github-copilot-cli
-        opencode
         rtk
 
         (pkgs.callPackage ../../pkgs/vendored/argocd.nix {})
