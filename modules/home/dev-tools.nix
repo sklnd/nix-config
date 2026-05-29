@@ -55,6 +55,7 @@
         (pkgs.callPackage ../../pkgs/vendored/argocd.nix {})
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
         (pkgs.callPackage ../../pkgs/vendored/gws.nix {})
+        (pkgs.callPackage ../../pkgs/vendored/plannotator.nix {})
         (pkgs.callPackage ../../pkgs/vendored/pup.nix {})
         (pkgs.callPackage ../../pkgs/vendored/td.nix {})
       ]
