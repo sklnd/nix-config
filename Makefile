@@ -12,7 +12,7 @@ sketchybar: nix
 .PHONY: nix
 nix:
 	@if [ "$(shell uname)" = "Linux" ]; then \
-		nixos-rebuild switch --use-remote-sudo --flake .# --impure; \
+		nixos-rebuild switch --sudo --flake .# --impure; \
 	elif [ "$(shell uname)" = "Darwin" ]; then \
 		sudo nix run nix-darwin -- switch --flake .#; \
 	else \
@@ -23,7 +23,7 @@ nix:
 .PHONY: nix-reboot
 nix-reboot:
 	@if [ "$(shell uname)" = "Linux" ]; then \
-		nixos-rebuild boot --use-remote-sudo --flake .# --impure; \
+		nixos-rebuild boot --sudo --flake .# --impure; \
 	else \
 		echo "Unsupported OS"; \
 		exit 1; \
