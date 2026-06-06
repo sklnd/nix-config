@@ -20,6 +20,15 @@ nix:
 		exit 1; \
 	fi
 
+.PHONY: nix-reboot
+nix-reboot:
+	@if [ "$(shell uname)" = "Linux" ]; then \
+		nixos-rebuild boot --use-remote-sudo --flake .# --impure; \
+	else \
+		echo "Unsupported OS"; \
+		exit 1; \
+	fi
+
 .PHONY: format
 format:
 	treefmt
