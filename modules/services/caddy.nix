@@ -19,7 +19,6 @@
     wantedBy = ["caddy.service"];
     serviceConfig = {
       Type = "oneshot";
-      RemainAfterExit = true;
       ExecStart = pkgs.writeShellScript "tailscale-cert" ''
         ${pkgs.tailscale}/bin/tailscale cert ${config.networking.hostName}.tail51d48.ts.net
         ${pkgs.coreutils}/bin/chgrp tailscale-cert /var/lib/tailscale
