@@ -9,7 +9,7 @@
     with llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
       [
         amazon-ecr-credential-helper
-        # argocd
+        argocd
         acli
         autoconf
         automake
@@ -52,7 +52,6 @@
         github-copilot-cli
         rtk
 
-        (pkgs.callPackage ../../pkgs/vendored/argocd.nix {})
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
         (pkgs.callPackage ../../pkgs/vendored/gws.nix {})
         (pkgs.callPackage ../../pkgs/vendored/plannotator.nix {})
