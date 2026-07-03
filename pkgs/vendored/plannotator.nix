@@ -3,22 +3,20 @@
   stdenv,
   fetchurl,
   makeWrapper,
-  git,
-  xdg-utils,
 }: let
-  version = "0.19.24";
+  version = "0.21.4";
   artifacts = {
     x86_64-linux = {
       name = "plannotator-linux-x64";
-      hash = "sha256-sJawfWX+H1IBt63u0bkAx5rBXcMDj4f0MzY6hl/JJMs=";
+      hash = "sha256-19wZGFRAvQfXNWgwlAsFJoFhLyUhSFi+068bcv0asuA=";
     };
     aarch64-darwin = {
       name = "plannotator-darwin-arm64";
-      hash = "sha256-1qjmlGdredKGdQm94OjuWf5Wc0KaasRuzfp0aur22Ws=";
+      hash = "sha256-Bhx62zgqwgT0B0h7PQ/EmjWJt5CLhtUw2Jba6rep720=";
     };
     aarch64-linux = {
       name = "plannotator-linux-arm64";
-      hash = "sha256-oX2S5Hz45LRt5RPCTxttuTtQgTTlFj0l4kpMq2I21Tc=";
+      hash = "sha256-/EG+jPtnPUTrmi6xfgShJc58tp8EmDayILk4tKYFsIs=";
     };
   };
   system = stdenv.hostPlatform.system;
