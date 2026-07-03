@@ -49,7 +49,6 @@
 
         # agent things
         claude-code
-        github-copilot-cli
         rtk
 
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
