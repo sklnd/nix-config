@@ -4,6 +4,9 @@ _: {
     homeDirectory = "/Users/chris.skalenda";
   };
 
+  # No personal coding agents on the work machine.
+  programs.pi-agent.enable = false;
+
   programs = {
     git.settings.user.email = "chris.skalenda@joinhonor.com";
     jujutsu.settings.user.email = "chris.skalenda@joinhonor.com";

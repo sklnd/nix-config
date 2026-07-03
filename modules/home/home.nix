@@ -2,6 +2,7 @@
   imports = [
     ./applications.nix
     ./dev-tools.nix
+    ./pi.nix
   ];
   home = {
     packages = with pkgs; [

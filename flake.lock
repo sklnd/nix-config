@@ -390,13 +390,37 @@
         "type": "github"
       }
     },
+    "pi-agent": {
+      "inputs": {
+        "llm-agents": [
+          "llm-agents"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783192749,
+        "narHash": "sha256-u9A7s4lR/kGWkyc4D6wOe4jj8eJiDBrr3vbJ/HKNVL4=",
+        "owner": "sklnd",
+        "repo": "pi-agent",
+        "rev": "5fd39913336da65d7aa0c94851f9b85a3932c658",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sklnd",
+        "repo": "pi-agent",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_2",
-        "nvim": "nvim"
+        "nvim": "nvim",
+        "pi-agent": "pi-agent"
       }
     },
     "systems": {
