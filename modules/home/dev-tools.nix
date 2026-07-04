@@ -43,12 +43,7 @@
         yq
         xz
 
-        # things for gondolin
-        e2fsprogs
-        lz4
-
         # agent things
-        claude-code
         rtk
 
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
