@@ -70,6 +70,7 @@
         };
         tools = {
           node = "24";
+          codebase-memory-mcp = "0.8.1";
         };
       };
     };
