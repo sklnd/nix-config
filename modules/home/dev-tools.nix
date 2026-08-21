@@ -71,7 +71,10 @@
         tools = {
           node = "24";
           codebase-memory-mcp = "0.8.1";
+          uv = "0.12";
+          "pipx:pagerduty-mcp" = "1.1.0";
         };
+        settings.pipx.uvx = true;
       };
     };
   };
