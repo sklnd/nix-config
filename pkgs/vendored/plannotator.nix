@@ -4,19 +4,19 @@
   fetchurl,
   makeWrapper,
 }: let
-  version = "0.21.4";
+  version = "0.27.4";
   artifacts = {
     x86_64-linux = {
       name = "plannotator-linux-x64";
-      hash = "sha256-19wZGFRAvQfXNWgwlAsFJoFhLyUhSFi+068bcv0asuA=";
+      hash = "sha256-6tHSdH1uWFYRm8lCpufmyFH2czh6P1Z+cyKm2TseHLA=";
     };
     aarch64-darwin = {
       name = "plannotator-darwin-arm64";
-      hash = "sha256-Bhx62zgqwgT0B0h7PQ/EmjWJt5CLhtUw2Jba6rep720=";
+      hash = "sha256-1xvt/TWHyXU+DQuR0i3NthnYBIjqWum0WaxvNGIdfPE=";
     };
     aarch64-linux = {
       name = "plannotator-linux-arm64";
-      hash = "sha256-/EG+jPtnPUTrmi6xfgShJc58tp8EmDayILk4tKYFsIs=";
+      hash = "sha256-dK8rNWMmUH1LZX5N5r7cmXtdDMjKjEGeWSn2wc1uW3Y=";
     };
   };
   system = stdenv.hostPlatform.system;
