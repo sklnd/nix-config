@@ -375,11 +375,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788624916,
-        "narHash": "sha256-TKhFn8qzzpH/ispqIJqyDRBzrUXQ35BXWHszVPDhEjE=",
+        "lastModified": 1788625501,
+        "narHash": "sha256-+t/uTUZYJ+qTePLaD35gEBjRfs2y702W/XA6gskNJn0=",
         "owner": "sklnd",
         "repo": "pi-agent",
-        "rev": "6f153d33d98d055b745e309109c2835a33442e0b",
+        "rev": "5b5481a531939b155f69962fd8e6e34bfb10961f",
         "type": "github"
       },
       "original": {
