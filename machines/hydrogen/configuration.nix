@@ -17,7 +17,6 @@ in {
     # ../../modules/services/prometheus.nix
     ../../modules/services/ssh.nix
     ../../modules/services/the-lounge.nix
-    ../../modules/services/vscode-server.nix
     ../../modules/services/xserver.nix
 
     ../../modules/hardware/bluetooth.nix
