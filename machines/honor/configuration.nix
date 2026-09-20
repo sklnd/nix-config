@@ -1,5 +1,6 @@
 {...}: let
   machineDefs = import ./system.nix {};
+  primaryUser = "chris.skalenda";
 in {
   imports = [
     ../../modules/desktop/darwin.nix
@@ -14,7 +15,7 @@ in {
   ids.gids.nixbld = 350;
 
   system = {
-    primaryUser = "chris.skalenda";
+    inherit primaryUser;
     stateVersion = 4;
   };
 }

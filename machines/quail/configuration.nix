@@ -1,5 +1,6 @@
-{pkgs, ...}: let
+{...}: let
   machineDefs = import ./system.nix {};
+  primaryUser = "chris";
 in {
   imports = [
     ../../modules/desktop/darwin.nix
@@ -12,7 +13,7 @@ in {
   nixpkgs.hostPlatform = machineDefs.hostPlatform;
 
   system = {
-    primaryUser = "chris";
+    inherit primaryUser;
     stateVersion = 4;
   };
 }

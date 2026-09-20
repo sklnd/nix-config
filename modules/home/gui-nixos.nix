@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  config = lib.mkIf (!pkgs.stdenv.isDarwin) {
+  config = lib.mkIf (pkgs.stdenv.hostPlatform.isLinux) {
     home.packages = with pkgs; [
       chromium
       dbvisualizer

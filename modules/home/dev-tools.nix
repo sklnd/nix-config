@@ -34,7 +34,6 @@
         ripgrep
         rustup
         shfmt
-        silver-searcher
         stylua
         temporal-cli
         tig
@@ -50,7 +49,7 @@
         (pkgs.callPackage ../../pkgs/vendored/td.nix {})
       ]
       # nixos-specific
-      ++ lib.optionals (!stdenv.isDarwin) [
+      ++ lib.optionals (!stdenv.hostPlatform.isDarwin) [
         gcc # Use xcode-tools.
       ];
   };

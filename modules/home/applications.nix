@@ -6,10 +6,10 @@
       bat
     ]
     # macos specific
-    ++ lib.optionals stdenv.isDarwin [
+    ++ lib.optionals stdenv.hostPlatform.isDarwin [
     ]
     # nixos-specific
-    ++ lib.optionals (!stdenv.isDarwin) [
+    ++ lib.optionals (!stdenv.hostPlatform.isDarwin) [
       bluetui
     ];
 }
