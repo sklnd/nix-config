@@ -103,7 +103,7 @@
 
     darwinConfigurations = {
       quail = buildDarwinSystemConfig hostConfigurations.quail;
-      "Chris-Skalendas-MacBook-Pro" = buildDarwinSystemConfig hostConfigurations.honor;
+      roadrunner = buildDarwinSystemConfig hostConfigurations.honor;
     };
 
     homeConfigurations = {
