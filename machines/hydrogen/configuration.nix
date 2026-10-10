@@ -5,6 +5,7 @@ in {
     ./hardware-configuration.nix
 
     ../../modules/system/boot-nixos.nix
+    ../../modules/system/ip-forwarding.nix
     ../../modules/system/locale.nix
     ../../modules/system/networking-nixos.nix
     ../../modules/system/nix.nix
