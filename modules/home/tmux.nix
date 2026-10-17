@@ -27,7 +27,14 @@
         }
       ];
       extraConfig = ''
-        # Configure the catppuccin plugin
+        # Make the active pane obvious: dim inactive borders, bright bold active border
+        set -g pane-border-style "fg=#313244"
+        set -g pane-active-border-style "fg=#89b4fa,bold"
+
+        # Show a marker and the pane title on the top border of each pane
+        set -g pane-border-status top
+        set -g pane-border-format "#{?pane_active,#[fg=#89b4fa,bold]▶ ,  }#[fg=#a6adc8]#{pane_index}: #{pane_title}"
+
         # Activity monitoring
         setw -g monitor-activity on
         set -g visual-activity on
