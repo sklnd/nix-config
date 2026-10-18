@@ -14,3 +14,17 @@ export PATH=$HOME/.npm-packages/bin:$PATH
 export NPM_CONFIG_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/npm"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 export NODE_PATH=$HOME/.npm-packages/lib/node_modules
+
+# Set the terminal/pane title: 'user@host: dir' before each prompt, and the
+# running command while it executes. tmux intercepts this as the pane title.
+autoload -Uz add-zsh-hook
+
+_set_pane_title() {
+  print -Pn '\e]2;%n@%m: %~\e\\'
+}
+add-zsh-hook precmd _set_pane_title
+
+_set_pane_title_cmd() {
+  printf '\033]2;%s\033\\' "$1"
+}
+add-zsh-hook preexec _set_pane_title_cmd
