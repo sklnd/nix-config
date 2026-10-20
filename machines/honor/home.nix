@@ -4,6 +4,8 @@ _: {
     homeDirectory = "/Users/chris.skalenda";
   };
 
+  sk.home.sshAgent.enable = true;
+
   # No personal coding agents on the work machine.
   programs.pi-agent.enable = false;
 
