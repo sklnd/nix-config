@@ -9,6 +9,7 @@ in {
     ../../modules/system/locale.nix
     ../../modules/system/networking-nixos.nix
     ../../modules/system/nix.nix
+    ../../modules/system/security-nixos.nix
     ../../modules/system/users.nix
 
     ../../modules/services/caddy.nix
