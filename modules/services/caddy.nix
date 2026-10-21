@@ -2,30 +2,41 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  tsDomain = "${config.networking.hostName}.tail51d48.ts.net";
+  certDir = "/var/lib/tailscale-certs";
+in {
   users.groups.tailscale-cert = {};
   users.users.caddy.extraGroups = ["tailscale-cert"];
   users.users.chris.extraGroups = ["tailscale-cert"];
 
-  # Ensure cert directory + keys readable by the group
+  # Cert directory readable by the tailscale-cert group (which caddy is in).
   systemd.tmpfiles.rules = [
-    "d /var/lib/tailscale/certs 0750 root tailscale-cert -"
-    "Z /var/lib/tailscale/certs - - - -"
+    "d ${certDir} 0750 root tailscale-cert -"
   ];
 
   systemd.services.tailscale-cert = {
-    description = "Refresh Tailscale TLS cert";
+    description = "Refresh Tailscale TLS certificate for Caddy";
+    # tailscaled must be running before a certificate can be requested.
+    after = ["tailscaled.service"];
+    requires = ["tailscaled.service"];
     before = ["caddy.service"];
     wantedBy = ["caddy.service"];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = pkgs.writeShellScript "tailscale-cert" ''
-        ${pkgs.tailscale}/bin/tailscale cert ${config.networking.hostName}.tail51d48.ts.net
-        ${pkgs.coreutils}/bin/chgrp tailscale-cert /var/lib/tailscale
-        ${pkgs.coreutils}/bin/chgrp tailscale-cert /var/lib/tailscale/certs/*
-        ${pkgs.coreutils}/bin/chmod 770 /var/lib/tailscale
-        ${pkgs.coreutils}/bin/chmod 770 /var/lib/tailscale/certs
-        ${pkgs.coreutils}/bin/chmod 640 /var/lib/tailscale/certs/*.key
+        set -euo pipefail
+
+        ${pkgs.coreutils}/bin/install -d -m 0750 -o root -g tailscale-cert ${certDir}
+
+        ${pkgs.tailscale}/bin/tailscale cert \
+          --cert-file ${certDir}/${tsDomain}.crt \
+          --key-file ${certDir}/${tsDomain}.key \
+          ${tsDomain}
+
+        ${pkgs.coreutils}/bin/chgrp tailscale-cert ${certDir}/${tsDomain}.crt ${certDir}/${tsDomain}.key
+        ${pkgs.coreutils}/bin/chmod 0640 ${certDir}/${tsDomain}.crt ${certDir}/${tsDomain}.key
+        ${pkgs.coreutils}/bin/chmod 0750 ${certDir}
       '';
     };
   };
@@ -41,10 +52,9 @@
   services.caddy = {
     enable = true;
 
-    virtualHosts."${config.networking.hostName}.tail51d48.ts.net" = {
+    virtualHosts."${tsDomain}" = {
       extraConfig = ''
-        tls /var/lib/tailscale/certs/${config.networking.hostName}.tail51d48.ts.net.crt \
-          /var/lib/tailscale/certs/${config.networking.hostName}.tail51d48.ts.net.key
+        tls ${certDir}/${tsDomain}.crt ${certDir}/${tsDomain}.key
 
         reverse_proxy localhost:3000
       '';
