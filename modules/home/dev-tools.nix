@@ -67,7 +67,7 @@
         tools = {
           node = "24";
           "pipx:codebase-memory-mcp" = "0.8.1";
-          uv = "0.12";
+          uv = "0.13.5";
           "pipx:pagerduty-mcp" = "1.1.0";
         };
         settings.pipx.uvx = true;
