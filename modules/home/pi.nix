@@ -17,6 +17,8 @@
   # programs.pi-agent.enable = false (see machines/honor/home.nix).
   programs.pi-agent.enable = lib.mkDefault true;
 
-  # pi shells out to `npm` to install its npm packages (see pi/settings.json).
-  programs.pi-agent.extraPackages = [pkgs.nodejs_24];
+  # pi runs `npm` at runtime; node-pty has no Linux prebuild, so node-gyp needs python3.
+  programs.pi-agent.extraPackages =
+    [pkgs.nodejs_24]
+    ++ lib.optionals pkgs.stdenv.isLinux [pkgs.python3];
 }
