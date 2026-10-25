@@ -8,6 +8,7 @@
 {
   pi-agent,
   lib,
+  pkgs,
   ...
 }: {
   imports = [pi-agent.homeManagerModules.default];
@@ -15,4 +16,7 @@
   # Enable pi everywhere by default; a host can override with
   # programs.pi-agent.enable = false (see machines/honor/home.nix).
   programs.pi-agent.enable = lib.mkDefault true;
+
+  # pi shells out to `npm` to install its npm packages (see pi/settings.json).
+  programs.pi-agent.extraPackages = [pkgs.nodejs_24];
 }
