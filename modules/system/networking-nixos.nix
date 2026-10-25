@@ -1,5 +1,5 @@
 # Networking config when running nixos (not dwarwin)
-{...}: {
+_: {
   networking = {
     extraHosts = ''
       127.0.0.1 localstack

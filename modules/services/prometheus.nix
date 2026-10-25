@@ -46,50 +46,59 @@
     ];
   };
 
-  # Dev Prometheus instance
-  systemd.services.prometheus-dev = {
-    description = "Prometheus Dev Instance";
-    wantedBy = ["multi-user.target"];
-    after = ["network-online.target"];
+  systemd = {
+    # Dev Prometheus instance
+    services.prometheus-dev = {
+      description = "Prometheus Dev Instance";
+      wantedBy = ["multi-user.target"];
+      after = ["network-online.target"];
 
-    serviceConfig = {
-      Type = "simple";
-      User = "prometheus";
-      Group = "prometheus";
-      ExecStart =
-        "${pkgs.prometheus}/bin/prometheus "
-        + "--config.file=/etc/prometheus/prometheus-dev.yml "
-        + "--storage.tsdb.path=/var/lib/prometheus-dev/data "
-        + "--web.listen-address=:9091 "
-        + "--storage.tsdb.retention.time=15d";
-      EnvironmentFile = "/etc/secrets/prometheus-dev-credentials";
-      Restart = "always";
-      StateDirectory = "prometheus-dev";
-      StateDirectoryMode = "0750";
+      serviceConfig = {
+        Type = "simple";
+        User = "prometheus";
+        Group = "prometheus";
+        ExecStart =
+          "${pkgs.prometheus}/bin/prometheus "
+          + "--config.file=/etc/prometheus/prometheus-dev.yml "
+          + "--storage.tsdb.path=/var/lib/prometheus-dev/data "
+          + "--web.listen-address=:9091 "
+          + "--storage.tsdb.retention.time=15d";
+        EnvironmentFile = "/etc/secrets/prometheus-dev-credentials";
+        Restart = "always";
+        StateDirectory = "prometheus-dev";
+        StateDirectoryMode = "0750";
+      };
     };
-  };
 
-  # Prod Prometheus instance
-  systemd.services.prometheus-prod = {
-    description = "Prometheus Prod Instance";
-    wantedBy = ["multi-user.target"];
-    after = ["network-online.target"];
+    # Prod Prometheus instance
+    services.prometheus-prod = {
+      description = "Prometheus Prod Instance";
+      wantedBy = ["multi-user.target"];
+      after = ["network-online.target"];
 
-    serviceConfig = {
-      Type = "simple";
-      User = "prometheus";
-      Group = "prometheus";
-      ExecStart =
-        "${pkgs.prometheus}/bin/prometheus "
-        + "--config.file=/etc/prometheus/prometheus-prod.yml "
-        + "--storage.tsdb.path=/var/lib/prometheus-prod/data "
-        + "--web.listen-address=:9092 "
-        + "--storage.tsdb.retention.time=15d";
-      EnvironmentFile = "/etc/secrets/prometheus-prod-credentials";
-      Restart = "always";
-      StateDirectory = "prometheus-prod";
-      StateDirectoryMode = "0750";
+      serviceConfig = {
+        Type = "simple";
+        User = "prometheus";
+        Group = "prometheus";
+        ExecStart =
+          "${pkgs.prometheus}/bin/prometheus "
+          + "--config.file=/etc/prometheus/prometheus-prod.yml "
+          + "--storage.tsdb.path=/var/lib/prometheus-prod/data "
+          + "--web.listen-address=:9092 "
+          + "--storage.tsdb.retention.time=15d";
+        EnvironmentFile = "/etc/secrets/prometheus-prod-credentials";
+        Restart = "always";
+        StateDirectory = "prometheus-prod";
+        StateDirectoryMode = "0750";
+      };
     };
+
+    # Tmpfiles rules for state directories
+    tmpfiles.rules = [
+      "d /var/lib/prometheus-dev 0750 prometheus prometheus -"
+      "d /var/lib/prometheus-prod 0750 prometheus prometheus -"
+      "d /etc/secrets 0700 root root -"
+    ];
   };
 
   # Prometheus config
@@ -111,19 +120,14 @@
   };
 
   # Ensure prometheus user and group exist
-  users.users.prometheus = lib.mkIf (!config.services.prometheus.enable) {
-    isSystemUser = true;
-    group = "prometheus";
-    home = "/var/lib/prometheus";
-    createHome = true;
+  users = {
+    users.prometheus = lib.mkIf (!config.services.prometheus.enable) {
+      isSystemUser = true;
+      group = "prometheus";
+      home = "/var/lib/prometheus";
+      createHome = true;
+    };
+
+    groups.prometheus = lib.mkIf (!config.services.prometheus.enable) {};
   };
-
-  users.groups.prometheus = lib.mkIf (!config.services.prometheus.enable) {};
-
-  # Tmpfiles rules for state directories
-  systemd.tmpfiles.rules = [
-    "d /var/lib/prometheus-dev 0750 prometheus prometheus -"
-    "d /var/lib/prometheus-prod 0750 prometheus prometheus -"
-    "d /etc/secrets 0700 root root -"
-  ];
 }

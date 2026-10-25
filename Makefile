@@ -33,6 +33,12 @@ nix-reboot:
 format:
 	treefmt
 
+.PHONY: fix
+fix:
+	statix fix .
+	deadnix --edit .
+	treefmt
+
 .PHONY: check
 check:
 	statix check .

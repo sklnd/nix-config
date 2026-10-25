@@ -1,4 +1,4 @@
-{...}: let
+_: let
   machineDefs = import ./system.nix {};
   primaryUser = "chris.skalenda";
 in {

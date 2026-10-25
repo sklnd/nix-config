@@ -1,0 +1,2 @@
+# nixos-generate-config output and vendored apple-silicon-support are not ours to restyle.
+ignore = [".direnv", "machines/grouse/hardware-configuration.nix", "machines/grouse/apple-silicon-support"]

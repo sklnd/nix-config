@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services = {
     # Configure keymap in X11
     xserver.xkb = {
