@@ -9,8 +9,8 @@
       server = {
         http_addr = "127.0.0.1";
         http_port = 3000;
-        domain = "${config.networking.hostName}.tail51d48.ts.net";
-        root_url = "https://${config.networking.hostName}.tail51d48.ts.net";
+        domain = "grafana.tail51d48.ts.net";
+        root_url = "https://grafana.tail51d48.ts.net";
       };
     };
     provision = {

@@ -12,12 +12,12 @@ in {
     ../../modules/system/security-nixos.nix
     ../../modules/system/users.nix
 
-    ../../modules/services/caddy.nix
     ../../modules/services/grafana.nix
     ../../modules/services/home-assistant.nix
     ../../modules/services/plex.nix
     # ../../modules/services/prometheus.nix
     ../../modules/services/ssh.nix
+    ../../modules/services/tailscale-services.nix
     ../../modules/services/the-lounge.nix
     ../../modules/services/xserver.nix
 

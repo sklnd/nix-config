@@ -3,8 +3,6 @@
     home-manager
   ];
 
-  networking.firewall.allowedTCPPorts = [8123];
-
   # Needed for python-xbox.
   # This is marked insecure for timing attack reasons, which isn't relevant for HA on a private network.
   # https://github.com/tlsfuzzer/python-ecdsa/issues/330
