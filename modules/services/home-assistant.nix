@@ -21,6 +21,7 @@
       "hue"
       "isal"
       "met"
+      "radio_browser"
       "shelly"
       "shopping_list"
       "sonos"
