@@ -26,6 +26,7 @@
       "sonos"
       "unifi"
       "weatherflow"
+      "weatherflow_cloud"
     ];
     extraPackages = python3Packages:
       with python3Packages; [
