@@ -10,6 +10,7 @@ _: {
   programs.pi-agent.enable = false;
 
   programs = {
+    mise.globalConfig.tools."pipx:pagerduty-mcp" = "1.1.0";
     git.settings.user.email = "chris.skalenda@joinhonor.com";
     jujutsu.settings.user.email = "chris.skalenda@joinhonor.com";
     gpg.enable = true;
