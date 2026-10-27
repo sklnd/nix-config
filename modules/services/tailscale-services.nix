@@ -7,6 +7,7 @@
   upstreams = {
     grafana = "http://127.0.0.1:3000";
     homeassistant = "http://127.0.0.1:8123";
+    thelounge = "http://127.0.0.1:9000";
   };
 in {
   services.tailscale.authKeyFile = "/etc/secrets/tailscale-authkey";
