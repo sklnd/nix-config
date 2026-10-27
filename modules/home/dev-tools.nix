@@ -8,9 +8,9 @@
     packages = with pkgs;
     with llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
       [
+        acli
         amazon-ecr-credential-helper
         argocd
-        acli
         autoconf
         automake
         aws-vault
@@ -21,6 +21,7 @@
         gh
         grpcurl
         hub
+        jq
         jre
         libtool
         mycli
@@ -39,8 +40,8 @@
         tig
         tilt
         tokei
-        yq
         xz
+        yq
 
         (pkgs.callPackage ../../pkgs/vendored/asdf-vm.nix {})
         (pkgs.callPackage ../../pkgs/vendored/gws.nix {})
