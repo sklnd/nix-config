@@ -27,3 +27,12 @@ A formatter is included using treefmt and nixfmt for nix files. To run:
 ```bash
 make format
 ```
+
+## Reusing shared configuration
+
+The flake exports `lib.buildDarwinSystemConfig` and `lib.buildHomeConfig` for
+composing the shared modules in other configurations. Both accept an optional
+`extraModules` list, which defaults to empty. Consumers supply their own host
+configuration and can add modules without copying the shared preferences.
+
+The root outputs and Makefile continue to configure the personal machines.

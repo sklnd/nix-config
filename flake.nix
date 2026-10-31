@@ -62,37 +62,45 @@
           {nixpkgs.overlays = [customPackages];}
         ];
       };
-    buildDarwinSystemConfig = host:
+    buildDarwinSystemConfig = {
+      host,
+      extraModules ? [],
+    }:
       nix-darwin.lib.darwinSystem {
         system = host.hostPlatform;
         specialArgs = {inherit nvim host;};
-        modules = [
-          host.configuration
-          ./modules/system-common.nix
-          ./modules/nvim.nix
-          {nixpkgs.overlays = [customPackages];}
-        ];
+        modules =
+          [
+            host.configuration
+            ./modules/system-common.nix
+            ./modules/nvim.nix
+            {nixpkgs.overlays = [customPackages];}
+          ]
+          ++ extraModules;
       };
 
     buildHomeConfig = {
       host,
       gui,
+      extraModules ? [],
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${host.hostPlatform};
         extraSpecialArgs = {inherit nvim host llm-agents pi-agent;};
-        modules = [
-          host.home
-          ./modules/home/home.nix
-          ./modules/home/git.nix
-          ./modules/home/tmux.nix
-          ./modules/home/zsh.nix
-          (
-            if gui
-            then ./modules/home/gui.nix
-            else {}
-          )
-        ];
+        modules =
+          [
+            host.home
+            ./modules/home/home.nix
+            ./modules/home/git.nix
+            ./modules/home/tmux.nix
+            ./modules/home/zsh.nix
+            (
+              if gui
+              then ./modules/home/gui.nix
+              else {}
+            )
+          ]
+          ++ extraModules;
       };
   in {
     nixosConfigurations = {
@@ -102,8 +110,7 @@
     };
 
     darwinConfigurations = {
-      quail = buildDarwinSystemConfig hostConfigurations.quail;
-      roadrunner = buildDarwinSystemConfig hostConfigurations.honor;
+      quail = buildDarwinSystemConfig {host = hostConfigurations.quail;};
     };
 
     homeConfigurations = {
@@ -123,18 +130,14 @@
         host = hostConfigurations.quail;
         gui = true;
       };
-      "chris.skalenda" = buildHomeConfig {
-        host = hostConfigurations.honor;
-        gui = true;
-      };
+    };
+
+    lib = {
+      inherit buildDarwinSystemConfig buildHomeConfig;
     };
 
     packages = nixpkgs.lib.genAttrs ["aarch64-darwin" "x86_64-darwin" "aarch64-linux" "x86_64-linux"] (system:
-      {
-        gws = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/vendored/gws.nix {};
-        pup = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/vendored/pup.nix {};
-      }
-      // nixpkgs.lib.optionalAttrs (builtins.elem system ["aarch64-darwin" "x86_64-darwin"]) {
+      nixpkgs.lib.optionalAttrs (builtins.elem system ["aarch64-darwin" "x86_64-darwin"]) {
         snd-ctl = nixpkgs.legacyPackages.${system}.callPackage ./pkgs/snd-ctl.nix {};
       });
   };

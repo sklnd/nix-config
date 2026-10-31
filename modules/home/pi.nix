@@ -4,7 +4,7 @@
 #
 # The module sets `programs.pi-agent.enable` (default false). Set it per-host
 # (or globally) to turn on pi. Disable with `programs.pi-agent.enable = false`
-# on hosts that shouldn't have it (see machines/honor/home.nix).
+# on hosts that shouldn't have it.
 {
   pi-agent,
   lib,
@@ -14,7 +14,7 @@
   imports = [pi-agent.homeManagerModules.default];
 
   # Enable pi everywhere by default; a host can override with
-  # programs.pi-agent.enable = false (see machines/honor/home.nix).
+  # programs.pi-agent.enable = false.
   programs.pi-agent.enable = lib.mkDefault true;
 
   # pi runs `npm` at runtime; node-pty has no Linux prebuild, so node-gyp needs python3.
