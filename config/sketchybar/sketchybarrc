@@ -29,25 +29,6 @@ sketchybar --default \
     label.padding_left=0 \
     label.padding_right=5
 
-# Workspace items are cloned from this hidden template by the plugin, so they sit at
-# the front of the bar no matter what order they get created in.
-sketchybar --add item space.template left \
-    --set space.template \
-    drawing=off \
-    icon.padding_left=0 \
-    icon.padding_right=0 \
-    label.padding_left=10 \
-    label.padding_right=10 \
-    label.color=0xffffffff
-
-# Invisible item that redraws the workspace items in a single sketchybar call.
-# The plugin gives each workspace item display=<n>, so every bar only shows the
-# workspaces of its own monitor. update_freq is a safety net: AeroSpace changes
-# workspaces without an event when a window rule moves a window to another workspace.
-sketchybar --add item space.refresh left \
-    --set space.refresh drawing=off update_freq=5 script="$PLUGIN_DIR/aerospace.sh" \
-    --subscribe space.refresh aerospace_workspace_change display_change system_woke front_app_switched
-
 sketchybar --add item front_app left \
     --set front_app \
     background.color=0xffa6da95 \
@@ -76,6 +57,26 @@ sketchybar --add item front_app left \
     label.font="$FONT_FACE:Bold:12.0" \
     label.drawing=yes
 
+# Workspace items are cloned from this hidden template by the plugin, so they sit
+# after the current app no matter what order they get created in.
+sketchybar --add item space.template left \
+    --set space.template \
+    drawing=off \
+    background.padding_left=5 \
+    background.padding_right=0 \
+    icon.padding_left=0 \
+    icon.padding_right=0 \
+    label.padding_left=10 \
+    label.padding_right=10 \
+    label.color=0xffffffff
+
+# Invisible item that redraws the workspace items in a single sketchybar call.
+# The plugin gives each workspace item display=<n>, so every bar only shows the
+# workspaces of its own monitor. update_freq is a safety net: AeroSpace changes
+# workspaces without an event when a window rule moves a window to another workspace.
+sketchybar --add item space.refresh left \
+    --set space.refresh drawing=off update_freq=5 script="$PLUGIN_DIR/aerospace.sh" \
+    --subscribe space.refresh aerospace_workspace_change display_change system_woke front_app_switched
 
 sketchybar --add item weather q \
     --set weather \
