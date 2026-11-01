@@ -3,10 +3,6 @@
   lib,
   ...
 }: {
-  options = {
-    enable = false;
-  };
-
   config = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     xdg.configFile."sketchybar".source = ../../config/sketchybar;
     programs.wezterm.enable = true;
