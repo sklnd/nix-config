@@ -25,9 +25,9 @@ while IFS='|' read -r sid monitor visible; do
     args+=(--clone "space.$sid" "$prev" after
         --set "space.$sid" label="$sid" click_script="aerospace workspace $sid"
         display="$display" drawing=on
-        background.color=0xff123456 label.color=0xffffffff background.border_width=0)
+        background.color=0x00000000 label.color=0xffa5adcb background.border_width=0)
     if [ "$visible" = true ] && [ "$sid" != "$focused" ]; then
-        args+=(background.color=0xff24273a
+        args+=(background.color=0x00000000
             background.border_width=2 background.border_color=0xffc29df1)
     fi
     prev="space.$sid"

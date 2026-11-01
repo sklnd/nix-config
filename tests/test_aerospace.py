@@ -47,6 +47,8 @@ def refresh(
         check=True,
     )
     args = result.stdout.split("\0")
+    assert "--remove" not in args, "Refresh must not destroy the workspace island"
+    assert "--add" not in args, "Refresh must not recreate the workspace island"
     updates: dict[str, dict[str, str]] = {}
     name = None
     for index, arg in enumerate(args):
@@ -75,11 +77,11 @@ def test_focused_visible_and_hidden_styles():
     updates = refresh("c|1|true\nb|2|true\nm|3|false")
     assert updates["space.b"]["background.color"] == "0xffc29df1"
     assert updates["space.b"]["background.border_width"] == "0"
-    assert updates["space.c"]["background.color"] == "0xff24273a"
+    assert updates["space.c"]["background.color"] == "0x00000000"
     assert updates["space.c"]["background.border_width"] == "2"
     assert updates["space.c"]["background.border_color"] == "0xffc29df1"
     assert updates["space.m"]["background.border_width"] == "0"
-    assert updates["space.m"]["background.color"] != "0xffc29df1"
+    assert updates["space.m"]["background.color"] == "0x00000000"
 
 
 def test_failed_workspace_query_leaves_bar_untouched():

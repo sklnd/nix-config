@@ -7,7 +7,7 @@ PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 sketchybar --add event aerospace_workspace_change
 
 sketchybar --bar \
-    height=32 \
+    height=40 \
     color=0x00000000 \
     margin=0 \
     sticky=on \
@@ -15,90 +15,89 @@ sketchybar --bar \
     padding_right=23 \
     notch_width=188
 
+# Setting background.color enables drawing, so disable it after the styling defaults.
 sketchybar --default \
-    label.color=0xffffffff \
-    background.color=0xcc24273a \
-    background.corner_radius=5 \
-    background.padding_right=5 \
-    background.height=26 \
-    icon.font="$FONT_FACE:Medium:15.0" \
-    icon.padding_left=5 \
-    icon.padding_right=5 \
+    label.color=0xffcad3f5 \
+    icon.color=0xffc29df1 \
+    background.color=0xdd24273a \
+    background.corner_radius=12 \
+    background.border_width=1 \
+    background.border_color=0xff494d64 \
+    background.padding_left=0 \
+    background.padding_right=0 \
+    background.height=28 \
+    background.drawing=off \
+    icon.font="$FONT_FACE:Medium:14.0" \
+    icon.padding_left=10 \
+    icon.padding_right=6 \
     label.font="$FONT_FACE:Medium:12.0" \
     label.y_offset=0 \
     label.padding_left=0 \
-    label.padding_right=5
+    label.padding_right=10
 
-sketchybar --add item front_app left \
-    --set front_app \
-    background.color=0xffa6da95 \
-    background.padding_left=0 \
-    background.padding_right=0 \
-    icon.y_offset=1 \
-    icon.color=0xff24273a \
-    label.drawing=no \
-    script="$PLUGIN_DIR/front_app.sh" \
-    --add item front_app.separator left \
-    --set front_app.separator \
-    background.color=0x00000000 \
-    background.padding_left=-3 \
-    icon= \
-    icon.color=0xffa6da95 \
-    icon.font="$FONT_FACE:Bold:20.0" \
-    icon.padding_left=0 \
-    icon.padding_right=0 \
-    icon.y_offset=1 \
-    label.drawing=no \
-    --add item front_app.name left \
-    --set front_app.name \
-    background.color=0x00000000 \
-    background.padding_right=0 \
-    icon.drawing=off \
-    label.font="$FONT_FACE:Bold:12.0" \
-    label.drawing=yes
+# Invisible edges keep the island alive while workspace items change between them.
+sketchybar --add item workspaces.start left \
+    --set workspaces.start width=0 icon.drawing=off label.drawing=off
 
-# Workspace items are cloned from this hidden template by the plugin, so they sit
-# after the current app no matter what order they get created in.
+# Workspace items are cloned after this hidden template, keeping them before the app.
 sketchybar --add item space.template left \
     --set space.template \
     drawing=off \
-    background.padding_left=5 \
-    background.padding_right=0 \
-    icon.padding_left=0 \
-    icon.padding_right=0 \
-    label.padding_left=10 \
-    label.padding_right=10 \
-    label.color=0xffffffff
+    background.drawing=on \
+    background.height=22 \
+    background.corner_radius=7 \
+    background.border_width=0 \
+    background.padding_left=3 \
+    background.padding_right=3 \
+    icon.drawing=off \
+    label.padding_left=8 \
+    label.padding_right=8 \
+    --add item workspaces.end left \
+    --set workspaces.end width=0 icon.drawing=off label.drawing=off \
+    --add bracket workspaces workspaces.start workspaces.end \
+    --set workspaces background.drawing=on
 
-# Invisible item that redraws the workspace items in a single sketchybar call.
-# The plugin gives each workspace item display=<n>, so every bar only shows the
-# workspaces of its own monitor. update_freq is a safety net: AeroSpace changes
-# workspaces without an event when a window rule moves a window to another workspace.
+# A separate spacer keeps the gap outside the app bracket's background.
+sketchybar --add item app.gap left \
+    --set app.gap width=10 icon.drawing=off label.drawing=off
+
+sketchybar --add item front_app left \
+    --set front_app \
+    icon.y_offset=1 \
+    label.drawing=off \
+    script="$PLUGIN_DIR/front_app.sh" \
+    --subscribe front_app front_app_switched \
+    --add item front_app.name left \
+    --set front_app.name \
+    icon.drawing=off \
+    label.font="$FONT_FACE:Bold:12.0" \
+    --add bracket front_app_bracket front_app front_app.name \
+    --set front_app_bracket background.drawing=on
+
+# The plugin maps workspaces to monitors; polling catches moves without an event.
 sketchybar --add item space.refresh left \
     --set space.refresh drawing=off update_freq=5 script="$PLUGIN_DIR/aerospace.sh" \
     --subscribe space.refresh aerospace_workspace_change display_change system_woke front_app_switched
 
 sketchybar --add item weather q \
     --set weather \
+    background.drawing=on \
+    background.padding_right=4 \
     icon= \
-    icon.color=0xfff5bde6 \
-    icon.font="$FONT_FACE:Bold:15.0" \
     update_freq=1800 \
     script="$PLUGIN_DIR/weather.sh" \
     --subscribe weather system_woke
 
-sketchybar --add bracket front_app_bracket \
-    front_app \
-    front_app.separator \
-    front_app.name \
-    --subscribe front_app front_app_switched
-
+# Right-side items are laid out from the outside inward.
 sketchybar --add item clock right \
     --set clock \
+    background.drawing=on \
     icon=󰃰 \
-    icon.color=0xffed8796 \
+    label.font="$FONT_FACE:Bold:12.0" \
     update_freq=10 \
-    script="$PLUGIN_DIR/clock.sh"
+    script="$PLUGIN_DIR/clock.sh" \
+    --add item clock.gap right \
+    --set clock.gap width=10 icon.drawing=off label.drawing=off
 
 sketchybar --add item battery right \
     --set battery \
@@ -107,25 +106,38 @@ sketchybar --add item battery right \
 
 sketchybar --add item volume right \
     --set volume \
-    icon.color=0xff8aadf4 \
-    label.drawing=true \
     script="$PLUGIN_DIR/volume.sh" \
     --subscribe volume volume_change
 
+sketchybar --add item wifi right \
+    --set wifi \
+    icon=󰈀 \
+    update_freq=5 \
+    script="$PLUGIN_DIR/wifi.sh" \
+    --subscribe wifi wifi_change system_woke
+
+sketchybar --add item tailscale right \
+    --set tailscale \
+    icon=󰒃 \
+    update_freq=5 \
+    label.max_chars=24 \
+    scroll_texts=on \
+    script="$PLUGIN_DIR/tailscale.sh" \
+    --subscribe tailscale system_woke \
+    --add bracket system_status tailscale wifi volume battery \
+    --set system_status background.drawing=on
+
 sketchybar --add item media e \
     --set media \
+    drawing=off \
+    background.drawing=on \
+    background.padding_left=4 \
     update_freq=5 \
-    label.max_chars=20 \
+    label.max_chars=24 \
+    label.scroll_duration=200 \
     scroll_texts=on \
     script="$PLUGIN_DIR/media.sh" \
     --subscribe media media_change
-
-sketchybar --add item wifi right \
-    --set wifi \
-    icon.color=0xff8aadf4 \
-    label.drawing=true \
-    script="$PLUGIN_DIR/wifi.sh" \
-    --subscribe wifi wifi_change
 
 ##### Finalizing Setup #####
 sketchybar --update
