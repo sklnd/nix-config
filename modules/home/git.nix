@@ -33,6 +33,7 @@
 
     git = {
       enable = true;
+      lfs.enable = true;
       settings = {
         user = {
           name = "Chris Skalenda";
@@ -61,14 +62,6 @@
         };
         "pull" = {
           ff = "only";
-        };
-        "filter" = {
-          "lfs" = {
-            clean = "git-lfs clean -- %f";
-            smudge = "git-lfs smudge -- %f";
-            process = "git-lfs filter-process";
-            required = true;
-          };
         };
         "init" = {
           defaultBranch = "main";
