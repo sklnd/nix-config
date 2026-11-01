@@ -3,7 +3,6 @@
 in {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system/security-nixos.nix
   ];
   nix.settings.experimental-features = [
     "nix-command"
