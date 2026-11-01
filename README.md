@@ -28,6 +28,17 @@ A formatter is included using treefmt and nixfmt for nix files. To run:
 make format
 ```
 
+## Checks
+
+Python checks use uv; the tests also require Bash and jq.
+```bash
+make lint       # Nix linting
+make fmt-check  # Check formatting without changing files
+make typecheck  # Check Python types with ty
+make test       # Run pytest
+make check      # Run all four checks
+```
+
 ## Reusing shared configuration
 
 The flake exports `lib.buildDarwinSystemConfig` and `lib.buildHomeConfig` for

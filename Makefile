@@ -43,7 +43,18 @@ fix:
 fmt-check:
 	treefmt --ci
 
-.PHONY: check
-check: fmt-check
+.PHONY: lint
+lint:
 	statix check .
 	deadnix --fail .
+
+.PHONY: typecheck
+typecheck:
+	uv run ty check tests
+
+.PHONY: test
+test:
+	uv run pytest
+
+.PHONY: check
+check: lint fmt-check typecheck test
