@@ -10,11 +10,6 @@ fi
 
 export PATH=$HOME/.local/bin:$PATH
 
-export PATH=$HOME/.npm-packages/bin:$PATH
-export NPM_CONFIG_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/npm"
-export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
-export NODE_PATH=$HOME/.npm-packages/lib/node_modules
-
 # Set the terminal/pane title: 'user@host: dir' before each prompt, and the
 # running command while it executes. tmux intercepts this as the pane title.
 autoload -Uz add-zsh-hook
