@@ -39,7 +39,11 @@ fix:
 	deadnix --edit .
 	treefmt
 
+.PHONY: fmt-check
+fmt-check:
+	treefmt --ci
+
 .PHONY: check
-check:
+check: fmt-check
 	statix check .
-	deadnix .
+	deadnix --fail .

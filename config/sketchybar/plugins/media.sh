@@ -7,8 +7,8 @@ IS_PLAYING="$(echo $MEDIA_INFO | jq -r '.is_playing')"
 CURRENT_SONG="$(echo $MEDIA_INFO | jq -r '.title + "-" + .artist')"
 
 if [ "$IS_PLAYING" = "true" ]; then
-	ICON=
+    ICON=
 else
-	ICON=
+    ICON=
 fi
 sketchybar --set $NAME label="$CURRENT_SONG" icon="$ICON" drawing=on

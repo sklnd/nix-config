@@ -1,12 +1,20 @@
-on-unmatched = "info"
+excludes = [
+  ".direnv",
+  "result",
+  # generated / vendored
+  "machines/grouse/hardware-configuration.nix",
+  "machines/grouse/apple-silicon-support/**",
+]
 
 [formatter.alejandra]
 command = "alejandra"
-includes = ["**/*.nix", "*.nix"]
+includes = ["*.nix"]
 
 [formatter.stylua]
 command = "stylua"
-includes = ["**/*.lua", "*.lua"]
-indent_type = "Spaces"
-indent_width = 2
-column_width = 120
+includes = ["*.lua"]
+
+[formatter.shfmt]
+command = "shfmt"
+options = ["-w", "-i", "4"]
+includes = ["*.sh"]
