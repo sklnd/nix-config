@@ -6,14 +6,15 @@ local tabline = wezterm.plugin.require('https://github.com/michaelbrusegard/tabl
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-if appearance.is_dark() then
-    config.color_scheme = 'Material Darker'
-else
-    config.color_scheme = 'iTerm2 Light Background'
-end
+local dark = appearance.is_dark()
+config.color_scheme = dark and 'Catppuccin Macchiato' or 'Catppuccin Latte'
+local colors = wezterm.color.get_builtin_schemes()[config.color_scheme]
+local accent = dark and '#c29df1' or '#8839ef'
+local surface = dark and '#363a4f' or '#e6e9ef'
+local muted = dark and '#a5adcb' or '#6c6f85'
 
 config.window_decorations = 'TITLE'
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.75
 config.macos_window_background_blur = 15
 config.window_close_confirmation = 'NeverPrompt'
 
@@ -57,20 +58,27 @@ config.font_shaper = 'Harfbuzz'
 tabline.setup({
     options = {
         icons_enabled = true,
-        theme = 'Catppuccin Mocha',
+        theme = config.color_scheme,
         tabs_enabled = true,
-        theme_overrides = {},
+        theme_overrides = {
+            normal_mode = {
+                a = { fg = accent, bg = surface },
+                c = { fg = colors.foreground, bg = colors.background },
+            },
+            tab = {
+                active = { fg = accent, bg = surface },
+                inactive = { fg = muted, bg = colors.background },
+                inactive_hover = { fg = colors.foreground, bg = surface },
+            },
+        },
         section_separators = {
-            left = wezterm.nerdfonts.pl_left_hard_divider,
-            right = wezterm.nerdfonts.pl_right_hard_divider,
+            left = wezterm.nerdfonts.ple_right_half_circle_thick .. ' ',
+            right = ' ' .. wezterm.nerdfonts.ple_left_half_circle_thick,
         },
-        component_separators = {
-            left = wezterm.nerdfonts.pl_left_soft_divider,
-            right = wezterm.nerdfonts.pl_right_soft_divider,
-        },
+        component_separators = { left = ' ', right = ' ' },
         tab_separators = {
-            right = wezterm.nerdfonts.ple_left_half_circle_thick,
-            left = wezterm.nerdfonts.ple_right_half_circle_thick,
+            right = ' ' .. wezterm.nerdfonts.ple_left_half_circle_thick,
+            left = wezterm.nerdfonts.ple_right_half_circle_thick .. ' ',
         },
     },
     sections = {
@@ -101,5 +109,7 @@ tabline.setup({
 })
 
 tabline.apply_to_config(config)
+config.colors.background = dark and '#181926' or colors.background
+config.window_padding = { left = 12, right = 12, top = 8, bottom = 0 }
 
 return config
