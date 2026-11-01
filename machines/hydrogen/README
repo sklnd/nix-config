@@ -1,1 +1,11 @@
-Hydrogen - A Beelink N100 running plex :)
+Hydrogen - A Beelink N100 running many self-hosted services :)
+
+# Home Assistant
+## reverse proxy
+Tailscale Serve forwards requests to http://127.0.0.1:8123.
+In Home Assistant, under Settings > System > Network > HTTP server, set:
+
+- Trust X-Forwarded-For: enabled
+- Trusted proxies: 127.0.0.1/32
+
+Since Home Assistant 2026.8, HTTP settings are managed through the UI. YAML is a one-time import and then the UI nags about a repair, so its configuration is not automated.
