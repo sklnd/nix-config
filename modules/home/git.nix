@@ -38,7 +38,7 @@
           name = "Chris Skalenda";
           email = lib.mkDefault "chris@skalenda.org";
         };
-        aliase = {
+        alias = {
           "co" = "checkout";
         };
         "user" = {
