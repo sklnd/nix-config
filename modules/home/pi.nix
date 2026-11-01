@@ -20,5 +20,5 @@
   # pi runs `npm` at runtime; node-pty has no Linux prebuild, so node-gyp needs python3.
   programs.pi-agent.extraPackages =
     [pkgs.nodejs_24]
-    ++ lib.optionals pkgs.stdenv.isLinux [pkgs.python3];
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [pkgs.python3];
 }

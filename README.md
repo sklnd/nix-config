@@ -36,14 +36,6 @@ make lint       # Nix linting
 make fmt-check  # Check formatting without changing files
 make typecheck  # Check Python types with ty
 make test       # Run pytest
-make check      # Run all four checks
+make eval-check # Evaluate all homes and systems except Grouse’s system
+make check      # Run all checks above
 ```
-
-## Reusing shared configuration
-
-The flake exports `lib.buildDarwinSystemConfig` and `lib.buildHomeConfig` for
-composing the shared modules in other configurations. Both accept an optional
-`extraModules` list, which defaults to empty. Consumers supply their own host
-configuration and can add modules without copying the shared preferences.
-
-The root outputs and Makefile continue to configure the personal machines.
