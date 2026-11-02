@@ -12,18 +12,18 @@ PORT=$(networksetup -listallhardwareports | awk -v device="$INTERFACE" '
 
 ICON=󰈀
 case "$PORT" in
-    Wi-Fi|AirPort)
-        ICON=
-        # macOS may redact the SSID unless `sudo ipconfig setverbose 1` is enabled.
-        SSID=$(ipconfig getsummary "$INTERFACE" | awk -F ' SSID : ' '/ SSID : / {print $2}')
-        LABEL=${SSID:-"Wi-Fi"}
-        ;;
-    *Ethernet*|*LAN*|*Thunderbolt*|*BASE-T*)
-        LABEL="Wired"
-        ;;
-    *)
-        LABEL=${PORT:-${INTERFACE:-"Not Connected"}}
-        ;;
+Wi-Fi | AirPort)
+    ICON=
+    # macOS may redact the SSID unless `sudo ipconfig setverbose 1` is enabled.
+    SSID=$(ipconfig getsummary "$INTERFACE" | awk -F ' SSID : ' '/ SSID : / {print $2}')
+    LABEL=${SSID:-"Wi-Fi"}
+    ;;
+*Ethernet* | *LAN* | *Thunderbolt* | *BASE-T*)
+    LABEL="Wired"
+    ;;
+*)
+    LABEL=${PORT:-${INTERFACE:-"Not Connected"}}
+    ;;
 esac
 
 sketchybar --set "$NAME" label="$LABEL" icon="$ICON"
