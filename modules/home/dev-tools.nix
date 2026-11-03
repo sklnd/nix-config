@@ -20,6 +20,7 @@ in {
       [
         aws-vault
         delta
+        difftastic
         hub
         jq
         jre

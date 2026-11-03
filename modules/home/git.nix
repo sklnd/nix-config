@@ -10,7 +10,12 @@
         ui = {
           default-command = "log";
           editor = "nvim";
-          pager = "delta";
+          diff-formatter = [
+            "difft"
+            "--color=always"
+            "$left"
+            "$right"
+          ];
         };
         git = {
           write-change-id-header = true;
