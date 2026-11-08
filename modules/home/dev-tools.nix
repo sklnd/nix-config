@@ -28,6 +28,7 @@ in {
         neovim-remote
         ngrok
         ollama
+        orca
         postgresql
         qemu
         rustup
