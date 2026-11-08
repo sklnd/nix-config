@@ -11,31 +11,35 @@ I'm using a flake to define the configuration organization, which then splinters
 - Common functionality lives within modules.
 
 ## Usage
+Install the repo's tools with `mise install`. Tasks use [just](https://just.systems/);
+run `just --list` to see the available recipes. System-switching recipes are selected
+automatically for Linux or macOS; `just nix-reboot` is Linux-only.
+
 System configurations are matched on hostname.
-The default make target switches the system configuration:
+The default recipe switches the system configuration:
 ```bash
-make
+just
 ```
 
 Home configuration is matched on `user@host`.
 To switch to the latest home-manager configuration:
 ```bash
-make home
+just home
 ```
 
 A formatter is included using treefmt and nixfmt for nix files. To run:
 ```bash
-make format
+just format
 ```
 
 ## Checks
 
 Python checks use uv; the tests also require Bash and jq.
 ```bash
-make lint       # Nix linting
-make fmt-check  # Check formatting without changing files
-make typecheck  # Check Python types with ty
-make test       # Run pytest
-make eval-check # Evaluate all homes and systems except Grouse’s system
-make check      # Run all checks above
+just lint       # Nix linting
+just fmt-check  # Check formatting without changing files
+just typecheck  # Check Python types with ty
+just test       # Run pytest
+just eval-check # Evaluate all homes and systems except Grouse’s system
+just check      # Run all checks above
 ```
