@@ -19,6 +19,7 @@ in {
   };
   environment.systemPackages = with pkgs; [
     jankyborders
+    secretive
     snd-ctl
   ];
 
