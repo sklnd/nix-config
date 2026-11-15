@@ -38,6 +38,7 @@ def test_workspace_island_has_permanent_edges():
         check=True,
     )
     args = result.stdout.splitlines()
+    assert "media" not in args  # Leave the notch's right side clear of the status island.
     assert args.index("workspaces.start") < args.index("space.template") < args.index("workspaces.end")
     assert args.index("workspaces.end") < args.index("app.gap") < args.index("front_app")
     assert args.index("front_app") < args.index("front_app.name")

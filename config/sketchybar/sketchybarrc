@@ -119,25 +119,14 @@ sketchybar --add item wifi right \
 sketchybar --add item tailscale right \
     --set tailscale \
     icon=󰒃 \
+    icon.color=0xff8087a2 \
+    icon.padding_right=10 \
+    label.drawing=off \
     update_freq=5 \
-    label.max_chars=24 \
-    scroll_texts=on \
     script="$PLUGIN_DIR/tailscale.sh" \
     --subscribe tailscale system_woke \
     --add bracket system_status tailscale wifi volume battery \
     --set system_status background.drawing=on
-
-sketchybar --add item media e \
-    --set media \
-    drawing=off \
-    background.drawing=on \
-    background.padding_left=4 \
-    update_freq=5 \
-    label.max_chars=24 \
-    label.scroll_duration=200 \
-    scroll_texts=on \
-    script="$PLUGIN_DIR/media.sh" \
-    --subscribe media media_change
 
 ##### Finalizing Setup #####
 sketchybar --update
