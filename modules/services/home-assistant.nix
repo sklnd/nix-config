@@ -39,6 +39,7 @@
         uiprotect
         unifi-discovery
         xboxapi
+        ical
       ];
     config = {
       # Includes dependencies for a basic setup
