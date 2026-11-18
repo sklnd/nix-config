@@ -30,7 +30,6 @@ in {
         ollama
         orca
         postgresql
-        qemu
         rustup
         stylua
         tig
