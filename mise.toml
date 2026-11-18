@@ -5,3 +5,6 @@ uv = "0.13.5"
 
 [shell_alias]
 make = "just"
+
+[settings]
+all_compile = false

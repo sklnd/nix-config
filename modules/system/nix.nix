@@ -7,6 +7,10 @@
         # python deps
         libgcc
         zlib
+
+        # node deps
+        stdenv.cc.cc.lib
+        zlib
       ];
     };
   };
