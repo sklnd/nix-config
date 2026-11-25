@@ -1,7 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  nixpkgs-tmux,
+  ...
+}: {
   programs = {
     tmux = {
       enable = true;
+      package = nixpkgs-tmux.legacyPackages.${pkgs.stdenv.hostPlatform.system}.tmux;
       terminal = "tmux-256color";
       historyLimit = 10000;
       prefix = "C-a";

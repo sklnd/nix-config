@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
+    # shortcut: pin tmux until a newer release fixes the split-pane redraw regression.
+    nixpkgs-tmux.url = "github:NixOS/nixpkgs/3d5072d4576db81df6e1c7fc23eadec306677491";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,6 +26,7 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs-tmux,
     home-manager,
     nix-darwin,
     nvim,
@@ -86,7 +89,7 @@
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${host.hostPlatform};
-        extraSpecialArgs = {inherit nvim host llm-agents pi-agent;};
+        extraSpecialArgs = {inherit nvim host llm-agents pi-agent nixpkgs-tmux;};
         modules =
           [
             host.home
