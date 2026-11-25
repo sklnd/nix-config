@@ -24,7 +24,10 @@ in {
         hub
         jq
         jre
-        mycli
+        (mycli.overrideAttrs (old: {
+          # shortcut: relax the 3.23.x pin until nixpkgs fixes mycli's dependency constraint.
+          pythonRelaxDeps = (old.pythonRelaxDeps or []) ++ ["pycryptodomex"];
+        }))
         neovim-remote
         ngrok
         ollama
