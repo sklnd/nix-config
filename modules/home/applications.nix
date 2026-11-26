@@ -7,6 +7,7 @@
     ]
     # macos specific
     ++ lib.optionals stdenv.hostPlatform.isDarwin [
+      mole-cleaner
     ]
     # nixos-specific
     ++ lib.optionals (!stdenv.hostPlatform.isDarwin) [
