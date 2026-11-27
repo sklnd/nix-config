@@ -21,6 +21,7 @@ in {
         aws-vault
         delta
         difftastic
+        doctl
         hub
         jq
         jre
